@@ -1,5 +1,5 @@
 import { Component, createEffect, createSignal, useContext} from "solid-js"
-import { Link } from "@solidjs/router"
+import { Link, useLocation, useNavigate } from "@solidjs/router"
 import { FaBrandsSearchengin, FaSolidCartShopping, FaSolidShop, FaSolidUser} from "solid-icons/fa"
 import { AppContext } from "../store"
 import Button from "./Button"
@@ -7,6 +7,10 @@ import Button from "./Button"
 const Header: Component = ()=>{
 
     const [state, {setSearchValue, setFilteredProducts}] =  useContext(AppContext)
+
+    let location = useLocation()
+    let navigate = useNavigate()
+
 
     const [isOpenSearch, setOpenSearch] = createSignal(true)
     
@@ -36,6 +40,11 @@ const Header: Component = ()=>{
     }
 
     function handleChange(e: any){
+
+        if(location.pathname !==  "/"){
+            navigate("/")
+        }
+        
         setSearchValue(e.target.value)
         let a = filterProducts(state.products, e.target.value)
         setFilteredProducts(a)
