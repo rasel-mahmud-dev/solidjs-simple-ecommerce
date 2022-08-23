@@ -17,11 +17,11 @@ const HomePage:Component = ()=> {
                 })
         }         
     })
-
+    
+    
     
     return (
         <div class="max-w-screen-xl mx-auto px-4">
-
             <div class="grid grid-cols-12">
                 <div class="col-span-2 px-4">
                     <h1 class="font-medium text-center">Category</h1>
