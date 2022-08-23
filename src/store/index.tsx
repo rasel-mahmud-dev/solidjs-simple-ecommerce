@@ -9,6 +9,9 @@ interface AppStateType {
   alertMessage: {isOpen: boolean, message?: string | JSXElement, status: 200 | 500},
   searchValue?: string,
   categories: {name: string}[]
+  filter: {
+    category: string[]
+  }
 }
 
 export const AppContext = createContext([{ products: null, auth: null, cart: [] || null }, {}]);
@@ -22,6 +25,9 @@ export function AppProvider(props) {
       cart: null,
       searchValue: "",
       alertMessage: {isOpen: false, message: "", status: 200},
+      filter: {
+        category: []
+      },
       categories: [
           {
               "name": "men's clothing"
@@ -47,6 +53,15 @@ export function AppProvider(props) {
 
         setFilteredProducts: function(productsData){          
           setState("filteredProducts", ()=> productsData)
+        },
+
+        setFilter: function(filterPayload){          
+          setState("filter", (filter)=> {
+            return {
+              ...filter,
+              category: filterPayload.category
+            }
+          })
         },
 
         login: function(payload: object | null){
