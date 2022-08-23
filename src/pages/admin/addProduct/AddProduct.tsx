@@ -32,16 +32,17 @@ const AddProduct: Component = (props) => {
       category: payload.category
 
     })
-    console.log(p);
+
+    let res = await p.save()
     
   }
 
   const [productData, setProductData] = createSignal({
-        title: { value: "", errorMessage: "", tauch: false },
-        category: { value: "", errorMessage: "", tauch: false }, // id
+        title: { value: "Mens Cotton Jacket", errorMessage: "", tauch: false },
+        category: { value: "men's clothing", errorMessage: "", tauch: false }, // id
         image: { value: null, blob: null, errorMessage: "", tauch: false },
-        price: { value: "", errorMessage: "", tauch: false },
-        description: { value: "", errorMessage: "", tauch: false },
+        price: { value: "55.99", errorMessage: "", tauch: false },
+        description: { value: "Mens Cotton Jacket Mens Cotton Jacket Mens Cotton Jacket Mens Cotton Jacket Mens Cotton Jacket", errorMessage: "", tauch: false },
    
   })
 
@@ -126,8 +127,6 @@ const AddProduct: Component = (props) => {
 
     addProduct(payload)
     
-
-
 
   }
 

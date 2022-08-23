@@ -1,7 +1,7 @@
 import { ProductType } from "../types"
 
 const firebaseInit = import("../firebase/init")
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, setDoc, doc } from "firebase/firestore";
 
 
 export class Product {
@@ -13,6 +13,8 @@ export class Product {
     rating: {rate: number, count: number}
     category: string
     createdAt: Date
+
+    static collection = "products"
    
     constructor(data: {title: string, price: number, description: string, image: string, rating:  {rate: number, count: number}, category: string}){
         this.title = data.title
@@ -43,10 +45,27 @@ export class Product {
                 console.error(e);
                 resolve(null)   
             }
+        })        
+    }
+
+
+    save(){
+        return new Promise<ProductType | null>(async(resolve, reject)=>{
+            try {
+                
+                // get db
+                const {default: db} = await firebaseInit
+            
+                // Add a new document in collection "cities"
+                await setDoc(doc(db, Product.collection, this.id), {
+                    ...this,
+                });
+                resolve(this)
+
+            } catch(ex){
+                resolve(null)
+            }
         })
-        
-
-
         
     }
 
