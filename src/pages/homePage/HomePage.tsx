@@ -1,7 +1,10 @@
+import { api } from "apis/index";
 import { Component, For, useContext, onMount } from "solid-js"
-import Product from "../components/Product"
-import { AppContext } from './../store/index';
-import { api } from './../apis/index';
+import Product from "../../components/Product"
+const ProductModal = import("src/models/Product")
+import { AppContext } from '../../store/index';
+import SkeletonPage from "./Skeleton.Page";
+import SkeletonProducts from "./Skeleton.Products";
 
 
 const HomePage:Component = ()=> {
@@ -10,6 +13,11 @@ const HomePage:Component = ()=> {
 
     onMount(async () => { 
         if(!state.products || state.products.length === 0){
+
+            // let {default: ProductM} = await ProductModal
+            // let products = await ProductM.findAll()
+            // setProducts(products)
+
             fetch(api + "/products")
                 .then(res=>res.json())
                 .then(json=> {
@@ -62,7 +70,7 @@ const HomePage:Component = ()=> {
                     </div>
                 </div>
                 <div class="col-span-10 grid grid-cols-4 gap-4 mt-4">
-                    <For each={state.filteredProducts ? state.filteredProducts :  state?.products} fallback={<div>Loading...</div>}>
+                    <For each={state.filteredProducts ? state.filteredProducts :  state?.products} fallback={<SkeletonProducts />}>
                         {(item) => <Product {...item} />}
                     </For>
                 </div>

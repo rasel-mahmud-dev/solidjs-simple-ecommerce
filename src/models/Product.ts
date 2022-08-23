@@ -1,10 +1,11 @@
 import { ProductType } from "../types"
 
 const firebaseInit = import("../firebase/init")
+
 import { getDocs, collection, setDoc, doc } from "firebase/firestore";
 
 
-export class Product {
+export default class Product {
     title: string
     price: number
     description: string
@@ -36,7 +37,7 @@ export class Product {
                 const querySnapshot  = await getDocs(collection(db, "products"));
                 querySnapshot.forEach((doc: any) => {
                     data.push({
-                        uid: doc.id,
+                        id: doc.id,
                         ...doc.data()
                     })
                 });     

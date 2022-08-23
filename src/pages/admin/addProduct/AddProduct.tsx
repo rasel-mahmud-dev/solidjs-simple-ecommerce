@@ -11,31 +11,15 @@ import InputGroup from "src/components/inputs/InputGroup";
 import { createSignal } from "solid-js";
 import TextArea from "components/inputs/TextArea";
 import Button from "components/Button";
-import { Product } from "src/models/Product";
+import Product from "src/models/Product";
 
 const AddProduct: Component = (props) => {
-  const [{ alertMessage }, {  login, setAlert }] = useContext(AppContext);
+  const [{ products, alertMessage }, {  login, setAlert }] = useContext(AppContext);
 
   // Initialize Cloud Firestore and get a reference to the service
 
   createEffect(async () => {}, 0);
 
-  async function addProduct(payload) {
-    // let products = await Product.findAll();
-
-    let p = new Product({
-      title: payload.title,
-      price: payload.price,
-      description: payload.description,
-      image: "",
-      rating: {rate: 4, count: 10},
-      category: payload.category
-
-    })
-
-    let res = await p.save()
-    
-  }
 
   const [productData, setProductData] = createSignal({
         title: { value: "Mens Cotton Jacket", errorMessage: "", tauch: false },
@@ -77,10 +61,10 @@ const AddProduct: Component = (props) => {
     setProductData(() => updateProductData);
   }
 
-  function handleSaveProduct(e: SubmitEvent) {
+  async function handleSaveProduct(e: SubmitEvent) {
     e.preventDefault();
 
-    let payload = {}
+    let payload: any = {}
 
 
     let isCompleted = true;
@@ -125,8 +109,33 @@ const AddProduct: Component = (props) => {
         return;
     }
 
-    addProduct(payload)
-    
+
+
+    // let p = new Product({
+    //     title: payload.title,
+    //     price: payload.price,
+    //     description: payload.description,
+    //     image: "",
+    //     rating: {rate: 4, count: 10},
+    //     category: payload.category
+    // })
+
+    products?.forEach(async (item)=>{
+        // console.log(item);
+
+        let p = new Product({
+            title: item.title,
+            price: item.price,
+            description: item.description,
+            image: item.image,
+            rating: item.rating,
+            category: item.category,
+        })
+        let res = await p.save()
+        console.log(res);
+    })
+
+    // let res = await p.save()
 
   }
 
