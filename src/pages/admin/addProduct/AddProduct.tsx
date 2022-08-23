@@ -11,6 +11,7 @@ import InputGroup from "src/components/inputs/InputGroup";
 import { createSignal } from "solid-js";
 import TextArea from "components/inputs/TextArea";
 import Button from "components/Button";
+import { Product } from "src/models/Product";
 
 const AddProduct: Component = (props) => {
   const [{ alertMessage }, {  login, setAlert }] = useContext(AppContext);
@@ -19,43 +20,48 @@ const AddProduct: Component = (props) => {
 
   createEffect(async () => {}, 0);
 
-  async function addProduct() {
-    let products = await Product.findAll();
-    console.log(products);
+  async function addProduct(payload) {
+    // let products = await Product.findAll();
 
-    // let p = new Product({
-    //   title: "ASDD",
-    //   price: 123,
-    //   description: "ASD",
-    //   image: "ASD",
-    //   rating: {},
-    //   category: "ASD"
+    let p = new Product({
+      title: payload.title,
+      price: payload.price,
+      description: payload.description,
+      image: "",
+      rating: {rate: 4, count: 10},
+      category: payload.category
 
-    // })
-    // console.log(p);
+    })
+    console.log(p);
+    
   }
+
+  const [productData, setProductData] = createSignal({
+        title: { value: "", errorMessage: "", tauch: false },
+        category: { value: "", errorMessage: "", tauch: false }, // id
+        image: { value: null, blob: null, errorMessage: "", tauch: false },
+        price: { value: "", errorMessage: "", tauch: false },
+        description: { value: "", errorMessage: "", tauch: false },
+   
+  })
+
+
   const [state, setState] = createSignal({
-    productData: {
-      title: { value: "", errorMessage: "", tauch: false },
-      category: { value: "", errorMessage: "", tauch: false }, // id
-      image: { value: null, blob: null, errorMessage: "", tauch: false },
-      price: { value: "", errorMessage: "", tauch: false },
-      description: { value: "", errorMessage: "", tauch: false },
-    },
     addMovieModal: "", // addGenre | addLanguage |  addQuality
     httpResponse: "",
     httpStatus: 0,
   });
 
-  function handleChange(e: any) {
-    const { name, value } = e.target;
 
+  function handleChange(e: any) {
+
+    const { name, value } = e.target;
     let updateProductData = {
-        ...state().productData
+        ...productData()
     }
 
     updateProductData = {
-      ...state().productData,
+      ...updateProductData,
       [name]: {
         ...updateProductData[name],
         value: value,
@@ -66,12 +72,8 @@ const AddProduct: Component = (props) => {
       },
     };
 
-    setState((state) => {
-      return {
-        ...state,
-        productData: {...state.productData, ...updateProductData},
-      };
-    });
+
+    setProductData(() => updateProductData);
   }
 
   function handleSaveProduct(e: SubmitEvent) {
@@ -82,9 +84,9 @@ const AddProduct: Component = (props) => {
 
     let isCompleted = true;
 
-    let updatedState = {...state().productData}
+    let updatedState = {...productData()}
 
-    const productDataPayload = state().productData
+    const productDataPayload = productData()
 
     for (let key in productDataPayload) {
         
@@ -103,28 +105,29 @@ const AddProduct: Component = (props) => {
             // }
 
         } else {
-            if (!productDataPayload[key].tauch || !productDataPayload[key].value) {
+            if (!productDataPayload[key].value) {
                 updatedState[key].errorMessage = `${key} is required`
                 isCompleted = false;
+                
             } else {
                 payload[key] = productDataPayload[key].value
             }
         }
     }
-    
+
  
-    setState((state) => {
-        return {
-          ...state,
-          productData: updatedState,
-        };
-    });
+    setProductData(() => updatedState);
 
 
     if (!isCompleted) {
         setAlert({isOpen: true, message: "Please fill all field", status: 500}) 
         return;
     }
+
+    addProduct(payload)
+    
+
+
 
   }
 
@@ -137,19 +140,17 @@ const AddProduct: Component = (props) => {
           type="text"
           label="Title"
           placeholder="Enter movie title"
-          onChange={handleChange}
-          value={state().productData.title.value}
-          errorMessage={state().productData.title.errorMessage}
+          onInput={handleChange}
+          reactiveState={productData}
         />
         {/*********** Price **************/}
-        <InputGroup
+         <InputGroup
           name="price"
           type="number"
           label="Price"
           placeholder="Enter Product price"
-          onChange={handleChange}
-          value={state().productData.price.value}
-          errorMessage={state().productData.price.errorMessage}
+          onInput={handleChange}
+          reactiveState={productData}
         />
 
         {/*********** Category **************/}
@@ -158,9 +159,8 @@ const AddProduct: Component = (props) => {
           type="text"
           label="category"
           placeholder="Enter category"
-          onChange={handleChange}
-          value={state().productData.category.value}
-          errorMessage={state().productData.category.errorMessage}
+          onInput={handleChange}
+          reactiveState={productData}
         />
 
         {/*********** description **************/}
@@ -168,10 +168,9 @@ const AddProduct: Component = (props) => {
           name="description"
           label="description"
           placeholder="Enter description"
-          onChange={handleChange}
-          value={state().productData.description.value}
-          errorMessage={state().productData.description.errorMessage}
-        />
+          onInput={handleChange}
+          reactiveState={productData}
+        /> 
        
         <Button type="submit">Add Product</Button>
       </form>

@@ -1,4 +1,4 @@
-import { Component, createSignal, createEffect,For, useContext, onMount } from "solid-js"
+import { Component, For, useContext, onMount } from "solid-js"
 import Product from "../components/Product"
 import { AppContext } from './../store/index';
 import { api } from './../apis/index';
