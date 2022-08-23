@@ -1,12 +1,12 @@
 import { Component,  useContext } from "solid-js"
 import { ProductType } from "../types";
-import { AppContext } from './../store/index';
+import { AppContext } from '../store/index';
 import Button from "./Button";
 
 
 
 
-const Product:Component<ProductType> = (props)=> {
+const SingleProduct:Component<ProductType> = (props)=> {
 
     const [state, {setCart, setAlert}] = useContext(AppContext)
 
@@ -42,4 +42,4 @@ const Product:Component<ProductType> = (props)=> {
     )
 }
 
-export default Product
+export default SingleProduct

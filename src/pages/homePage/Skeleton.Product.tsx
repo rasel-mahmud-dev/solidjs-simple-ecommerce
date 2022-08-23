@@ -2,7 +2,7 @@ import Skeleton from "components/Skeleton/Skeleton";
 
 const SkeletonProduct = () => {
   return (
-    <Skeleton className="shadow-1 p-4 white-bg">
+    <Skeleton className="shadow-md flex justify-between flex-col items-center p-4 white-bg py-10">
       <Skeleton.Line className="h-24 w-full mx-auto" />
       <div class="mt-2">
         <Skeleton.Line className="h-2 w-8/12 mx-auto" />

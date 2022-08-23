@@ -1,4 +1,4 @@
-import { Component, createSignal, useContext} from "solid-js"
+import { Component, createSignal, Show, useContext} from "solid-js"
 import { Link, useLocation, useNavigate } from "@solidjs/router"
 import {  FaSolidCartShopping, FaSolidShop, FaSolidUser} from "solid-icons/fa"
 import { AppContext } from "../store"
@@ -6,13 +6,15 @@ import Button from "./Button"
 
 const Header: Component = ()=>{
 
-    const [state, {setSearchValue, setFilteredProducts}] =  useContext(AppContext)
+    const [state, {setSearchValue, setFilteredProducts, login}] =  useContext(AppContext)
 
     let location = useLocation()
     let navigate = useNavigate()
 
 
     const [isOpenSearch, setOpenSearch] = createSignal(false)
+
+    const [isOpenDropdown, setOpenDropdown] = createSignal(false)
     
     function countQuantity(cart){
         let count = 0
@@ -57,21 +59,45 @@ const Header: Component = ()=>{
         setFilteredProducts(a)
     }
 
+    function handleLogout(){
+        login(null)
+        setOpenDropdown(false)
+    }
+
+    function authDropdown(isAuth: boolean){
+        return (
+            <div class="shadow-md p-3 bg-white absolute right-6 top-12 w-40">
+                {isAuth ? (
+                    <>
+                    <li class="hover:text-green-400"><Link onClick={()=>setOpenDropdown(false)} href="">Dashboard</Link></li>
+                        <li class="hover:text-green-400 mt-1"><Link onClick={()=>setOpenDropdown(false)} href="admin/add-product">Add Product</Link></li>
+                        <li class="hover:text-green-400 mt-1"><span onClick={handleLogout}>Logout</span></li>
+                    </>
+                ) : (
+                    <>
+                        <li class="hover:text-green-400 mt-1"><Link onClick={()=>setOpenDropdown(false)} href="login">Login</Link></li>
+                    </>
+                )}
+                
+            </div>
+        )
+    }
+
 
     return (
         <div>
             <header class="bg-green-500 shadow-lg fixed top-0 left-0 w-full">
-            <div class="max-w-screen-xl mx-auto px-4 py-4 grid grid-cols-12 items-center">
+            <div class="max-w-screen-xl mx-auto px-4 grid grid-cols-12 items-center">
 
-                <ul class="justify-end col-span-4 lg:col-span-3 ">
+                <ul class="justify-end col-span-3 sm:col-span-6 lg:col-span-3 ">
                     <li class="">
                         <Link href="/" class="flex items-center text-white">
                         <FaSolidShop class="text-4xl text-orange-500 " />
-                        <h1 class="ml-2 font-medium text-2xl">Solidjs Ecommerce</h1></Link>
+                        <h1 class="ml-2 font-medium text-lg md:text-2xl">Solidjs <span class="hidden sm:inline-block">Ecommerce</span></h1></Link>
                     </li>
                 </ul>                
 
-                <ul class="flex gap-x-6 justify-self-center col-span-6">
+                <ul class="hidden lg:flex gap-x-6 justify-self-center col-span-6">
                     <li class="text-white font-medium">
                         <Link href="/">Shopping</Link>
                     </li>
@@ -86,8 +112,9 @@ const Header: Component = ()=>{
                     </li>
                 </ul>
 
-                <ul class="flex gap-x-4 items-center justify-self-end col-span-2 lg:col-span-3">
-                <li onClick={()=>setOpenSearch(isOpen=> !isOpen )} >
+                <ul class="flex gap-x-4 items-center justify-self-end col-span-9 sm:col-span-6 lg:col-span-3">
+
+                    <li class="py-4" onClick={()=>setOpenSearch(isOpen=> !isOpen )} >
                      
                     <div class="w-4 fill-white flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -95,17 +122,17 @@ const Header: Component = ()=>{
                     
                     
                     </li>
-                    <li>
+                    <li class="py-4">
                         <Link href="/cart" class="flex items-center">
                             <FaSolidCartShopping class="text-xl text-white" />
                             <span class="text-white ml-1.5 font-medium text-lg">{countQuantity(state.cart)}</span>
                         </Link>
                     </li>
-                    <li class="">
+                    <li class="w-full py-4 relative" onMouseOver={()=>setOpenDropdown(true)} onMouseLeave={()=>setOpenDropdown(false)}>
                     
                 
                         { state.auth ? (
-                          <div class="flex items-center">
+                          <div class="flex items-center" >
                              
                               { state.auth.avatar  
                                 ? <img class="w-5 h-5" src="https://lh3.googleusercontent.com/a-/AFdZucpqn0-GSAC7u7ku0PQw36tssLNAXHWDL9BMt8Wj=s96-c"  />
@@ -113,19 +140,26 @@ const Header: Component = ()=>{
                               }
         
                             <span class="text-white ml-1 font-medium">{state.auth.username ? state.auth.username : state.auth.email.substr(0, 5)}</span>
+                            
                           </div>  
-                        ) : ( <Link href="/login" class="flex  items-center">
-                            <FaSolidUser class="text-xl text-white" />
-                            <span class="text-white ml-1 font-medium">Login</span>
-                        </Link> )
+                            ) : ( <Link href="/login" class="flex  items-center">
+                                <FaSolidUser class="text-xl text-white" />
+                                <span class="text-white ml-1 font-medium">Login</span>
+                            </Link> )
                         }
+
+                        <Show
+                            when={isOpenDropdown()}>
+                            {authDropdown(state.auth)}
+                        </Show>  
+
                     </li>
                 </ul>
 
             </div>
         </header>
 
-        { isOpenSearch() && (<div class="bg-white shadow-lg w-full py-2 -mt-3 ">
+        { isOpenSearch() && (<div class="bg-white shadow-lg w-full pb-2 -mt-3 ">
             <div class="max-w-md mx-auto">
                 <form onSubmit={handleSearch} class="border border-green-500 flex items-center rounded-md rounded-tr-md rounded-br-md">
                     <input 
