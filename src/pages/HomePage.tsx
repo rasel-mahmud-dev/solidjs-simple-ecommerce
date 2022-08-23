@@ -16,16 +16,13 @@ const HomePage:Component = ()=> {
         }         
     })
 
-    
+
 
     return (
         <div class="max-w-screen-xl mx-auto px-4">
 
-            <h2>{Date.now()}</h2>
-            {state.products?.length}
-
-            <div class="grid grid-cols-4 gap-4">
-                <For each={state?.products} fallback={<div>Loading...</div>}>
+            <div class="grid grid-cols-4 gap-4 mt-4">
+                <For each={state.filteredProducts ? state.filteredProducts :  state?.products} fallback={<div>Loading...</div>}>
                     {(item) => <Product {...item} />}
                 </For>
             </div>

@@ -29,6 +29,8 @@ const Product:Component<ProductProps> = (props)=> {
         })
     }   
 
+    
+
 
     return (
         <div class="shadow-md flex justify-around flex-col items-center p-4">

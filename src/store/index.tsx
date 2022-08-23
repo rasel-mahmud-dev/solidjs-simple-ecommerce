@@ -27,19 +27,19 @@ export function AppProvider(props) {
       state,
       {
         setProducts: function(productsData){
-          setState("products", (products)=> products = productsData)
+          setState("products", ()=> productsData)
         },
 
-        setFilteredProducts: function(productsData){
-          setState("filteredProducts", (filteredProducts)=> filteredProducts = productsData)
+        setFilteredProducts: function(productsData){          
+          setState("filteredProducts", ()=> productsData)
         },
 
         login: function(payload: object | null){
-          setState("auth", (auth)=> auth = payload)
+          setState("auth", ()=>  payload)
         },
 
         setSearchValue: function(payload: string){
-          setState("searchValue", (searchValue)=> searchValue = payload)
+          setState("searchValue", ()=> payload)
         },
 
         setCart: function(item){          

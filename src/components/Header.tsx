@@ -6,10 +6,9 @@ import Button from "./Button"
 
 const Header: Component = ()=>{
 
-    const [state] =  useContext(AppContext)
+    const [state, {setSearchValue, setFilteredProducts}] =  useContext(AppContext)
 
     const [isOpenSearch, setOpenSearch] = createSignal(true)
-    const [searchValue, setSearchValue] = createSignal("")
     
     function countQuantity(cart){
         let count = 0
@@ -37,9 +36,16 @@ const Header: Component = ()=>{
     }
 
     function handleChange(e: any){
-        setSearchValue(val=> e.target.value)
-        let a = filterProducts(state.products, searchValue())
-        console.log(a);   
+        setSearchValue(e.target.value)
+        let a = filterProducts(state.products, e.target.value)
+        setFilteredProducts(a)
+    }
+
+    function handleSearch(e: SubmitEvent){
+        e.preventDefault();
+        let a = filterProducts(state.products, state.searchValue)
+
+        setFilteredProducts(a)
     }
 
 
@@ -105,15 +111,15 @@ const Header: Component = ()=>{
 
         { isOpenSearch() && (<div class="bg-white shadow-lg w-full py-2 -mt-3 ">
             <div class="max-w-md mx-auto">
-                <div class="border border-green-500 flex items-center rounded-md rounded-tr-md rounded-br-md">
+                <form onSubmit={handleSearch} class="border border-green-500 flex items-center rounded-md rounded-tr-md rounded-br-md">
                     <input 
                         onInput={handleChange} 
                         type="text" 
-                        value={searchValue()}
+                        value={state.searchValue}
                         placeholder="Enter Product Name" 
                         class="w-full bg-transparent outline-none px-4" />
-                    <Button class="mt-0 rounded-tl-none rounded-bl-none">Search</Button>
-                </div>
+                    <Button type="submit" class="mt-0 rounded-tl-none rounded-bl-none">Search</Button>
+                </form>
 
             </div>
         </div>) }                            
