@@ -7,7 +7,8 @@ interface AppStateType {
   auth: {email: string} | null,
   cart: {title: string}[] | null
   alertMessage: {isOpen: boolean, message?: string | JSXElement, status: 200 | 500},
-  searchValue?: string
+  searchValue?: string,
+  categories: {name: string}[]
 }
 
 export const AppContext = createContext([{ products: null, auth: null, cart: [] || null }, {}]);
@@ -20,7 +21,21 @@ export function AppProvider(props) {
       auth: null,
       cart: null,
       searchValue: "",
-      alertMessage: {isOpen: false, message: "", status: 200}
+      alertMessage: {isOpen: false, message: "", status: 200},
+      categories: [
+          {
+              "name": "men's clothing"
+          },
+          {
+              "name": "jewelery"
+          },
+          {
+              "name": "electronics"
+          },
+          {
+              "name": "women's clothing"
+          }
+      ]
      });
     
     const appState: {state: AppStateType, actions: {} } = [

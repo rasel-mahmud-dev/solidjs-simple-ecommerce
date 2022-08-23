@@ -1,6 +1,6 @@
-import { Component, createEffect, createSignal, useContext} from "solid-js"
+import { Component, createSignal, useContext} from "solid-js"
 import { Link, useLocation, useNavigate } from "@solidjs/router"
-import { FaBrandsSearchengin, FaSolidCartShopping, FaSolidShop, FaSolidUser} from "solid-icons/fa"
+import {  FaSolidCartShopping, FaSolidShop, FaSolidUser} from "solid-icons/fa"
 import { AppContext } from "../store"
 import Button from "./Button"
 
@@ -12,7 +12,7 @@ const Header: Component = ()=>{
     let navigate = useNavigate()
 
 
-    const [isOpenSearch, setOpenSearch] = createSignal(true)
+    const [isOpenSearch, setOpenSearch] = createSignal(false)
     
     function countQuantity(cart){
         let count = 0
