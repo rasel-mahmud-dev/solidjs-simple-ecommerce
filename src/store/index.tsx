@@ -16,7 +16,7 @@ export function AppProvider(props) {
       products: [],
       auth: null,
       cart: null,
-      alertMessage: {isOpen: true, message: "Product Add to Cart", status: 200}
+      alertMessage: {isOpen: false, message: "", status: 200}
      });
     
     const appState: {state: AppStateType, actions: {} } = [

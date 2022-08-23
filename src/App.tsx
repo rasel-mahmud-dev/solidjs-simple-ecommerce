@@ -14,7 +14,6 @@ const App: Component = () => {
 
   const [{alertMessage} ]= useContext(AppContext)
 
-  console.log(alertMessage.message);
   
 
   return (
