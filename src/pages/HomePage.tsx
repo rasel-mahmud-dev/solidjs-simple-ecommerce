@@ -1,4 +1,4 @@
-import { Component, createSignal, createEffect,For, useContext } from "solid-js"
+import { Component, createSignal, createEffect,For, useContext, onMount } from "solid-js"
 import Product from "../components/Product"
 import { AppContext } from './../store/index';
 import { api } from './../apis/index';
@@ -8,7 +8,7 @@ const HomePage:Component = ()=> {
 
     const [state, {setProducts, setFilter}] = useContext(AppContext)
 
-    createEffect((prev)=>{ 
+    onMount(async () => { 
         if(!state.products || state.products.length === 0){
             fetch(api + "/products")
                 .then(res=>res.json())

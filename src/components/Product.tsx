@@ -1,19 +1,12 @@
-import { Component, createSignal, createEffect, useContext } from "solid-js"
+import { Component,  useContext } from "solid-js"
+import { ProductType } from "../types";
 import { AppContext } from './../store/index';
 import Button from "./Button";
 
 
-interface ProductProps  {
-    title: string,
-    price: number,
-    description: string,
-    id: number,
-    image: string
-    rating: {},
-    category: string
-}
 
-const Product:Component<ProductProps> = (props)=> {
+
+const Product:Component<ProductType> = (props)=> {
 
     const [state, {setCart, setAlert}] = useContext(AppContext)
 

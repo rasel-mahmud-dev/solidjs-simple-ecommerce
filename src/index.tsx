@@ -8,7 +8,7 @@ import { AppProvider } from "./store";
 
 render(
   () => (
-    <Router base="solidjs-simple-ecommerce">
+    <Router >
       <AppProvider>
         <App />
       </AppProvider>

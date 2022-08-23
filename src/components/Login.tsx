@@ -1,7 +1,9 @@
-import { Component, createSignal, useContext} from "solid-js"
-import {  useNavigate } from "@solidjs/router"
-import {FaSolidLockOpen} from "solid-icons/fa"
+import { Component, createSignal, lazy, useContext } from "solid-js"
+import { useNavigate } from "@solidjs/router"
+import { FaSolidLockOpen } from "solid-icons/fa"
 import { AppContext } from './../store/index';
+import Button from "./Button";
+const authActions = import("../store/authActions")
 
 
 const Login: Component = ()=>{
@@ -39,6 +41,22 @@ const Login: Component = ()=>{
         }
     }
 
+    async function handleGoogleLogin(){
+        try{
+            const {loginWithGoogle} = await authActions
+            loginWithGoogle((user)=>{
+            if(user){
+                // only for developmeent 
+                // login(user)
+                // localStorage.setItem("auth", JSON.stringify(user))
+                // navigate("/")
+            }
+            })
+        } catch(ex){
+            
+        }
+      }
+
     return (
         <div>
             <h1 class="text-center text-4xl font-bold">User Login</h1>
@@ -68,10 +86,15 @@ const Login: Component = ()=>{
                 
                 <h1>{Date.now()} {userData().email}</h1>
 
-                <button class="flex items-center mt-4 bg-green-500 text-white px-4 py-1.5 rounded text-lg">
+                <button type="submit" class="flex items-center mt-4 bg-green-500 text-white px-4 py-1.5 rounded text-lg">
                     <FaSolidLockOpen />
                     <h1 class="ml-1 font-medium">Login</h1>
                 </button>
+
+                <h1>Or</h1>
+
+                <Button type="button" onClick={handleGoogleLogin}>Login With Google</Button>
+
             </form>
         </div>
     )

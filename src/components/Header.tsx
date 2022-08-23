@@ -102,10 +102,17 @@ const Header: Component = ()=>{
                         </Link>
                     </li>
                     <li class="">
+                    
+                
                         { state.auth ? (
                           <div class="flex items-center">
-                            <FaSolidUser class="text-xl text-white" />
-                            <span class="text-white ml-1 font-medium">{state.auth.email.substr(0, 5)}</span>
+                             
+                              { state.auth.avatar  
+                                ? <img class="w-5 h-5" src="https://lh3.googleusercontent.com/a-/AFdZucpqn0-GSAC7u7ku0PQw36tssLNAXHWDL9BMt8Wj=s96-c"  />
+                                : <FaSolidUser class="text-xl text-white" /> 
+                              }
+        
+                            <span class="text-white ml-1 font-medium">{state.auth.username ? state.auth.username : state.auth.email.substr(0, 5)}</span>
                           </div>  
                         ) : ( <Link href="/login" class="flex  items-center">
                             <FaSolidUser class="text-xl text-white" />
