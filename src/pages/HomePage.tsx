@@ -1,6 +1,7 @@
 import { Component, createSignal, createEffect,For, useContext } from "solid-js"
 import Product from "../components/Product"
 import { AppContext } from './../store/index';
+import { api } from './../apis/index';
 
 
 const HomePage:Component = ()=> {
@@ -9,7 +10,7 @@ const HomePage:Component = ()=> {
 
     createEffect((prev)=>{ 
         if(!state.products || state.products.length === 0){
-            fetch('http://localhost:1000/products')
+            fetch(api + "/products")
                 .then(res=>res.json())
                 .then(json=> {
                     setProducts(json)
@@ -18,9 +19,7 @@ const HomePage:Component = ()=> {
     })
     
     function handleChangeCategory(name: string){
-        console.log(name);
-        
-       
+
         let updatedCategory = [...state.filter.category]
         let index = updatedCategory.indexOf(name);
         if(index === -1){

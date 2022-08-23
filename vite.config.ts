@@ -6,6 +6,7 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  base: "/solidjs-simple-ecommerce/",
   build: {
     target: 'esnext',
   },
