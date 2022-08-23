@@ -1,10 +1,11 @@
-import { createContext } from "solid-js";
+import { createContext, JSXElement } from "solid-js";
 import { createStore } from "solid-js/store";
 
 interface AppStateType {
   products: null | {title: string}[],
   auth: {email: string} | null,
   cart: {title: string}[] | null
+  alertMessage: {isOpen: boolean, message?: string | JSXElement, status: 200 | 500}
 }
 
 export const AppContext = createContext([{ products: null, auth: null, cart: [] || null }, {}]);
@@ -15,15 +16,16 @@ export function AppProvider(props) {
       products: [],
       auth: null,
       cart: null,
+      alertMessage: {isOpen: true, message: "Product Add to Cart", status: 200}
      });
     
-    const appState = [
+    const appState: {state: AppStateType, actions: {} } = [
       state,
       {
         setProducts: function(productsData){
           setState("products", (products)=> products = productsData)
         },
-        
+
         login: function(data){
           setState("auth", (auth)=> auth = data)
         },
@@ -44,10 +46,24 @@ export function AppProvider(props) {
                 quantity: 1,
               }
             }
-          
             return updateCart
-            
+          })
+        },
 
+        setAlert: function(alertData: {isOpen: true, message?: string | JSXElement, status: 200}){          
+          setTimeout(()=>{
+            setState("alertMessage", function(alertMessage){
+              return {
+                ...alertMessage,
+                isOpen: false,
+              }
+            })
+          }, 1000)
+          setState("alertMessage", function(alertMessage){
+            return {
+              ...alertMessage,
+              ...alertData
+            }
           })
         }
       },

@@ -15,7 +15,7 @@ interface ProductProps  {
 
 const Product:Component<ProductProps> = (props)=> {
 
-    const [state, {setCart}] = useContext(AppContext)
+    const [state, {setCart, setAlert}] = useContext(AppContext)
 
     function handleAddTpCart(item){
         setCart({
@@ -23,6 +23,9 @@ const Product:Component<ProductProps> = (props)=> {
             image: item.image,
             title: item.title,
             price: item.price
+        })
+        setAlert({
+            isOpen: true, message: <h1 class="text-white">Product Add to Cart...</h1>, status: 200
         })
     }   
 
@@ -32,13 +35,12 @@ const Product:Component<ProductProps> = (props)=> {
            
                 <div class="w-36 h-36">
                     <img class="object-contain w-full h-full " src={props.image} alt="" />
-
                 </div>
                 <div>
-                <h1>{props.title}</h1>
+                <h1 class="text-center mt-2">{props.title}</h1>
                 {/* <p>{props.description}</p> */}
-                <h3>{props.price}</h3>
-                <Button onClick={()=>handleAddTpCart(props)}>Add To Cart</Button>
+                <h3 class="text-center font-medium mt-2">{props.price}</h3>
+                <Button class="mx-auto" onClick={()=>handleAddTpCart(props)}>Add To Cart</Button>
            
         </div>
         </div>
