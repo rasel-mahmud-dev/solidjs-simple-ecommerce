@@ -9,7 +9,7 @@ const Header: Component = ()=>{
     const [state] =  useContext(AppContext)
 
     const [isOpenSearch, setOpenSearch] = createSignal(true)
-
+    const [searchValue, setSearchValue] = createSignal("")
     
     function countQuantity(cart){
         let count = 0
@@ -25,6 +25,23 @@ const Header: Component = ()=>{
         return count;
         
     }
+
+    function filterProducts(products, searchValue){
+        let matchProducts = []
+        for(let product of products){
+            if(product.title.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1){
+                matchProducts.push(product)
+            }
+        }
+        return matchProducts
+    }
+
+    function handleChange(e: any){
+        setSearchValue(val=> e.target.value)
+        let a = filterProducts(state.products, searchValue())
+        console.log(a);   
+    }
+
 
     return (
         <div>
@@ -89,7 +106,12 @@ const Header: Component = ()=>{
         { isOpenSearch() && (<div class="bg-white shadow-lg w-full py-2 -mt-3 ">
             <div class="max-w-md mx-auto">
                 <div class="border border-green-500 flex items-center rounded-md rounded-tr-md rounded-br-md">
-                    <input type="text" placeholder="Enter Product Name" class="w-full bg-transparent outline-none px-4" />
+                    <input 
+                        onInput={handleChange} 
+                        type="text" 
+                        value={searchValue()}
+                        placeholder="Enter Product Name" 
+                        class="w-full bg-transparent outline-none px-4" />
                     <Button class="mt-0 rounded-tl-none rounded-bl-none">Search</Button>
                 </div>
 

@@ -3,9 +3,11 @@ import { createStore } from "solid-js/store";
 
 interface AppStateType {
   products: null | {title: string}[],
+  filteredProducts: null | {title: string}[],
   auth: {email: string} | null,
   cart: {title: string}[] | null
-  alertMessage: {isOpen: boolean, message?: string | JSXElement, status: 200 | 500}
+  alertMessage: {isOpen: boolean, message?: string | JSXElement, status: 200 | 500},
+  searchValue?: string
 }
 
 export const AppContext = createContext([{ products: null, auth: null, cart: [] || null }, {}]);
@@ -13,9 +15,11 @@ export const AppContext = createContext([{ products: null, auth: null, cart: [] 
 export function AppProvider(props) {
 
     const [state, setState] = createStore<AppStateType>({
-      products: [],
+      products: null,
+      filteredProducts: null,
       auth: null,
       cart: null,
+      searchValue: "",
       alertMessage: {isOpen: false, message: "", status: 200}
      });
     
@@ -26,8 +30,16 @@ export function AppProvider(props) {
           setState("products", (products)=> products = productsData)
         },
 
-        login: function(data){
-          setState("auth", (auth)=> auth = data)
+        setFilteredProducts: function(productsData){
+          setState("filteredProducts", (filteredProducts)=> filteredProducts = productsData)
+        },
+
+        login: function(payload: object | null){
+          setState("auth", (auth)=> auth = payload)
+        },
+
+        setSearchValue: function(payload: string){
+          setState("searchValue", (searchValue)=> searchValue = payload)
         },
 
         setCart: function(item){          
@@ -66,6 +78,7 @@ export function AppProvider(props) {
             }
           })
         }
+
       },
     ];
   
