@@ -44,7 +44,8 @@
         "_id": "616f1a7ea99f7fc73e1accda",
         "name": "Mi",
         "categoryIds": [
-            "60df5e546419f56b97610602"
+            "60df5e546419f56b97610602",
+            "613ae2344b72d984efe8c45b"
         ]
     },
     {
@@ -76,7 +77,10 @@
     },
     {
         "_id": "6148b427841259e44511661d",
-        "name": "Terabyte"
+        "name": "Terabyte",
+        "categoryIds": [
+            "60df5e546419f56b97610617"
+        ]
     },
     {
         "_id": "6148b35c841259e44511661c",
@@ -101,7 +105,8 @@
         "_id": "613d2233c9247b736856e2a7",
         "name": "walton",
         "categoryIds": [
-            "60df5e546419f56b97610602"
+            "60df5e546419f56b97610602",
+            "613ae2344b72d984efe8c45b"
         ]
     },
 
@@ -128,6 +133,15 @@
         "name": "Honor",
         "categoryIds": [
             "60df5e546419f56b97610602"
+        ]
+    },
+    {
+        "_id": "613d2233c9247b736956e2a2",
+        "name": "Samsung",
+        "categoryIds": [
+            "60df5e546419f56b97610602",
+            "613ae2344b72d984efe8c45b",
+            "60df5e546419f56b97610617"
         ]
     },
     {
@@ -215,7 +229,10 @@
     },
     {
         "_id": "613511bba937c621233341c8",
-        "name": "Lenovo"
+        "name": "Lenovo",
+        "categoryIds": [
+            "613ae2344b72d984efe8c45b"
+        ]
     },
     {
         "_id": "6115fd304fb6923fc8faef4e",
@@ -229,12 +246,36 @@
         "name": "Gigatech"
     },
     {
+        "_id": "60e16ec9eb7929109252d85e",
+        "name": "WD",
+        "categoryIds": [
+            "60df5e546419f56b97610617"
+        ]
+    },
+    {
+        "_id": "60e16ec9eb7929109252d05e",
+        "name": "SanDisk",
+        "categoryIds": [
+            "60df5e546419f56b97610617"
+        ]
+    },
+    {
+        "_id": "60e16ec9eb7929109252d81e",
+        "name": "Silicon Power",
+        "categoryIds": [
+            "60df5e546419f56b97610617"
+        ]
+    },
+    {
         "_id": "60e16ec9eb7929109752d85d",
         "name": "Intel"
     },
     {
         "_id": "60e16ec9eb7929109752d85c",
-        "name": "asus"
+        "name": "asus",
+        "categoryIds": [
+            "613ae2344b72d984efe8c45b"
+        ]
     },
     {
         "_id": "60e05bc6c4db28a6a4fdcb89",

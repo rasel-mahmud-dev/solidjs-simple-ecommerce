@@ -12,7 +12,7 @@ interface Props extends JSX.InputHTMLAttributes<HTMLInputElement> {
 }
 
 
-const InputGroup: Component<Props> = ({name, reactiveState, type, label, inputClass, labelClass, placeholder, onInput, className, ...attr}) => {
+const InputGroup: Component<Props> = ({name, reactiveState, type="text", label, inputClass, labelClass, placeholder, onInput, className, ...attr}) => {
 
   return (
         <div class={["mt-4 flex items-start flex-col md:flex-row", className].join(" ")} >            

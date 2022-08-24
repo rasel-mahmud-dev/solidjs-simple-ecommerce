@@ -20,6 +20,8 @@ interface AppStateType {
   }
 }
 
+let id:any;
+
 export const AppContext = createContext([{ products: null, auth: null, cart: [] || null }, {}]);
 
 export function AppProvider(props) {
@@ -102,8 +104,9 @@ export function AppProvider(props) {
           })
         },
 
-        setAlert: function(alertData: {isOpen: true, message?: string | JSXElement, status: 200}){          
-          setTimeout(()=>{
+        setAlert: function(alertData: {isOpen: true, message?: string | JSXElement, status: 200}){  
+          id && clearTimeout(id);        
+          id = setTimeout(()=>{
             setState("alertMessage", function(alertMessage){
               return {
                 ...alertMessage,
@@ -112,10 +115,7 @@ export function AppProvider(props) {
             })
           }, 1000)
           setState("alertMessage", function(alertMessage){
-            return {
-              ...alertMessage,
-              ...alertData
-            }
+            return alertData
           })
         }
 

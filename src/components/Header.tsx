@@ -86,7 +86,7 @@ const Header: Component = ()=>{
 
     return (
         <div>
-            <header class="bg-green-500 shadow-lg fixed top-0 left-0 w-full">
+            <header class="bg-green-500 shadow-lg fixed z-40 top-0 left-0 w-full">
             <div class="max-w-screen-xl mx-auto px-4 grid grid-cols-12 items-center">
 
                 <ul class="justify-end col-span-3 sm:col-span-6 lg:col-span-3 ">

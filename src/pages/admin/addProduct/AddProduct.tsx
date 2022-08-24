@@ -142,6 +142,8 @@ const AddProduct: Component = (props) => {
       // update product 
       let response = await Product.updateOne(data, params.id)
       if(response){
+        console.log(response);
+        
         setAlert({isOpen: true, message: "Product has been updated", status: 200}) 
       } else{
         setAlert({isOpen: true, message: "Product update fail", status: 500}) 
@@ -179,16 +181,20 @@ const AddProduct: Component = (props) => {
           reactiveState={productData}
         />
 
-        <img class="w-full" src={productData().image.value} alt="image" srcset="" />
+        <div class="w-40 mx-auto my-4">
+          <img class="object-cover w-full h-full" src={productData().image.value} alt="image" srcset="" />
+        </div>
+
+        
         {/*********** Price **************/}
          <InputGroup
-          name="price"
-          type="number"
-          step="any"
-          label="Price"
-          placeholder="Enter Product price"
-          onInput={handleChange}
-          reactiveState={productData}
+            name="price"
+            type="number"
+            step="any"
+            label="Price"
+            placeholder="Enter Product price"
+            onInput={handleChange}
+            reactiveState={productData}
         />
 
         {/*********** Category **************/}

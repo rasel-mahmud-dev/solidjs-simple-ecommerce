@@ -15,18 +15,28 @@
     },
     {
         "_id": "60df5e546419f56b97610602",
-        "name": "Mobiles",
+        "name": "Mobile",
         "parent_id": "60df5e546419f56b97610600"
     },
     {
         "_id": "60df5e546419f56b97610603",
-        "name": "Tablets",
+        "name": "Tablet",
         "parent_id": "60df5e546419f56b97610600"
     },
 
     {
         "_id": "60df5e546419f56b97610607",
         "name": "Laptop",
+        "parent_id": "60df5e546419f56b97610600"
+    },
+    {
+        "_id": "60df5e546419f56b97610607",
+        "name": "Laptop Backpack",
+        "parent_id": "60df5e546419f56b97610600"
+    },
+    {
+        "_id": "60df5e546419f56b97610617",
+        "name": "Hard Drive/SSD",
         "parent_id": "60df5e546419f56b97610600"
     },
 
@@ -40,8 +50,26 @@
         ]
     },
     {
+        "_id": "610660933773b883da37222f",
+        "name": "Jacket",
+        "parent_id": "60df5e546419f56b97610601",
+        "ideals": [
+            "610663713763b883da372234",
+            "6106637d3763b883da372235"
+        ]
+    },
+    {
         "_id": "610661183763b883da372230",
         "name": "jeans",
+        "parent_id": "60df5e546419f56b97610601",
+        "ideals": [
+            "610663713763b883da372234",
+            "6106637d3763b883da372235"
+        ]
+    },
+    {
+        "_id": "610661183763b883da312230",
+        "name": "Rain Jacket",
         "parent_id": "60df5e546419f56b97610601",
         "ideals": [
             "610663713763b883da372234",
@@ -66,7 +94,7 @@
     },
     {
         "_id": "6137a040a75f8548ba40c3af",
-        "name": "shart",
+        "name": "Shart",
         "parent_id": "60df5e546419f56b97610601",
         "ideals": [
             "610663713763b883da372234",
@@ -80,7 +108,7 @@
     },
     {
         "_id": "613ae2344b72d984efe8c45b",
-        "name": "monitors",
+        "name": "Monitor",
         "parent_id": "60df5e546419f56b97610600"
     },
     {
@@ -94,7 +122,7 @@
 
     {
         "_id": "61489d4e841259e4451165f2",
-        "name": "Television.",
+        "name": "Television",
         "parent_id": "60df5e546419f56b97610600"
     },
 
@@ -127,6 +155,11 @@
     {
         "_id": "617080e473b3851a1e7dbb78",
         "name": "Perfume",
+        "parent_id": "6170784f55f4a0b4747a30e3"
+    },
+    {
+        "_id": "617080e473b3851a1e72bb78",
+        "name": "Bracelet",
         "parent_id": "6170784f55f4a0b4747a30e3"
     }
 ]
