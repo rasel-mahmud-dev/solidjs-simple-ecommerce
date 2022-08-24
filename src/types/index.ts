@@ -5,6 +5,6 @@ export interface ProductType  {
     id: string,
     image: string
     rating: {},
-    category: string
+    categoryId: string
     createdAt: Date
 }

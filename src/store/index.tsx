@@ -3,9 +3,10 @@ import { createStore } from "solid-js/store";
 
 import categories from "src/assets/categories.json"
 import brands from "src/assets/brands.json"
+import { ProductType } from './../types/index';
 
 interface AppStateType {
-  products: null | {title: string}[],
+  products: null | ProductType[],
   filteredProducts: null | {title: string}[],
   auth: {email: string} | null,
   cart: {title: string}[] | null
@@ -14,7 +15,7 @@ interface AppStateType {
   categories: {name: string}[]
   brands: {name: string}[]
   filter: {
-    category: string[]
+    category: {name: string, _id: string} | null;
   }
 }
 
@@ -30,7 +31,7 @@ export function AppProvider(props) {
       searchValue: "",
       alertMessage: {isOpen: false, message: "", status: 200},
       filter: {
-        category: []
+        category: null
       },
       categories: categories,
       brands: brands
@@ -61,7 +62,7 @@ export function AppProvider(props) {
           setState("filteredProducts", ()=> productsData)
         },
 
-        setFilter: function(filterPayload){          
+        setFilter: function(filterPayload){                    
           setState("filter", (filter)=> {
             return {
               ...filter,

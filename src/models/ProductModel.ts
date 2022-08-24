@@ -12,19 +12,19 @@ export default class ProductModel {
     id: string
     image: string
     rating: {rate: number, count: number}
-    category: string
+    categoryId: string
     createdAt: Date
 
     static collection = "products"
    
-    constructor(data: {title: string, price: number, description: string, image: string, rating:  {rate: number, count: number}, category: string}){
+    constructor(data: {title: string, price: number, description: string, image: string, rating:  {rate: number, count: number}, categoryId: string}){
         this.title = data.title
         this.price = data.price
         this.description = data.description
         this.id = ((Date.now().toString().slice(5)) + Math.floor((Math.random() * 1000))).toString()
         this.image = data.image
         this.rating = data.rating
-        this.category = data.category
+        this.categoryId = data.categoryId
         this.createdAt = new Date()
     }
 

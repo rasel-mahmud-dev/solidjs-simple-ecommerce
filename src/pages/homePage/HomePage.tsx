@@ -1,15 +1,16 @@
 import { api } from "apis/index";
-import { Component, For, useContext, onMount } from "solid-js"
+import { Component, For, useContext, onMount, createEffect } from "solid-js"
 import SingleProduct from "components/SingleProduct"
 const ProductModal = import("src/models/ProductModel")
 import { AppContext } from '../../store/index';
 import SkeletonProducts from "./Skeleton.Products";
 import Sidebar from "./Sidebar";
+import { filterProducts } from "src/store/productActions";
 
 
 const HomePage:Component = ()=> {
 
-    const [state, {setProducts, setFilter}] = useContext(AppContext)
+    const [state, {setProducts, setFilter, setFilteredProducts}] = useContext(AppContext)
 
     onMount(async () => { 
         if(!state.products || state.products.length === 0){
@@ -25,28 +26,24 @@ const HomePage:Component = ()=> {
                 })
         }         
     })
-    
-    function handleChangeCategory(name: string){
 
-        let updatedCategory = [...state.filter.category]
-        let index = updatedCategory.indexOf(name);
-        if(index === -1){
-            updatedCategory.push(name)
-        } else {
-            updatedCategory.splice(index, 1)
+    createEffect(()=>{ 
+        if(state.filter.category){
+            let products = filterProducts({
+                products: state.products,
+                filter: state.filter
+            })
+            setFilteredProducts(products)
         }
 
-        setFilter({
-            category: updatedCategory
-        })
-    }
-
+    }, state.filter.category)
+    
     
     return (
         <div class="max-w-screen-xl mx-auto px-4">
             <div class="grid grid-cols-12">
 
-                <Sidebar state={state}/>
+                <Sidebar state={state} setFilter={setFilter} />
 
                 <div class="col-span-12 md:col-span-9 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
                     <For each={state.filteredProducts ? state.filteredProducts :  state?.products} fallback={<SkeletonProducts />}>

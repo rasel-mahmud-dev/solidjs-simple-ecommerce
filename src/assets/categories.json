@@ -16,58 +16,20 @@
     {
         "_id": "60df5e546419f56b97610602",
         "name": "Mobiles",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
+        "parent_id": "60df5e546419f56b97610600"
     },
     {
         "_id": "60df5e546419f56b97610603",
         "name": "Tablets",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
+        "parent_id": "60df5e546419f56b97610600"
     },
-    {
-        "_id": "60df5e546419f56b97610604",
-        "name": "Computer Components",
-        "parent_id": "60e00694402ddf2ba7d26d43"
-    },
-    {
-        "_id": "60df5e546419f56b97610605",
-        "name": "All in One PC",
-        "parent_id": "60e00694402ddf2ba7d26d43"
-    },
+
     {
         "_id": "60df5e546419f56b97610607",
         "name": "Laptop",
-        "parent_id": "60e00694402ddf2ba7d26d43"
-    },
-    {
-        "_id": "60df5e546419f56b97610608",
-        "name": "Motherboard",
-        "parent_id": "60df5e546419f56b97610604"
-    },
-    {
-        "_id": "60df5e546419f56b97610609",
-        "parent_id": "60df5e546419f56b97610604",
-        "name": "Processor"
-    },
-    {
-        "_id": "60df5e546419f56b9761060a",
-        "name": "Ram",
-        "parent_id": "60df5e546419f56b97610604"
-    },
-    {
-        "_id": "60df5e546419f56b9761060b",
-        "name": "Keyboard",
-        "parent_id": "60df5e546419f56b97610604"
-    },
-    {
-        "_id": "60e00694402ddf2ba7d26d43",
-        "parent_id": "60df5e546419f56b97610600",
-        "name": "Computer and Laptop Accessories"
-    },
-    {
-        "_id": "60e0131fc4db28b79bb36aa3",
-        "name": "Mobiles and Tablet",
         "parent_id": "60df5e546419f56b97610600"
     },
+
     {
         "_id": "610660933763b883da37222f",
         "name": "t-shart",
@@ -117,21 +79,6 @@
         "parent_id": "60df5e546419f56b97610601"
     },
     {
-        "_id": "6139a31e9d681052496d245f",
-        "name": "Laptop Battery",
-        "parent_id": "60e00694402ddf2ba7d26d43"
-    },
-    {
-        "_id": "6139a3e99d681052496d2460",
-        "name": "Laptop Motherboard",
-        "parent_id": "60e00694402ddf2ba7d26d43"
-    },
-    {
-        "_id": "613a41184b72d984efe8c454",
-        "name": "power-supply",
-        "parent_id": "60df5e546419f56b97610604"
-    },
-    {
         "_id": "613ae2344b72d984efe8c45b",
         "name": "monitors",
         "parent_id": "60df5e546419f56b97610600"
@@ -144,293 +91,13 @@
             "6106637d3763b883da372235"
         ]
     },
-    {
-        "_id": "6148899cd7c3a8485f011af4",
-        "name": "Mobile Camera Lens Protectors",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011af5",
-        "name": "Cases & Covers",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011af6",
-        "name": "Power Banks",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011af7",
-        "name": "Mobile Holders",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011af8",
-        "name": "Mobile Sim & SD Card Trays",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011af9",
-        "name": "Mobile Flashes",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011afa",
-        "name": "Mobile Battery",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011afb",
-        "name": "Mobile Spare Parts",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011afc",
-        "name": "Mobile Cables",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011afe",
-        "name": "Charging Pads",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011aff",
-        "name": "Selfie Sticks",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011b01",
-        "name": "SIM Adapters",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011b04",
-        "name": "Screen Guards",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011b05",
-        "name": "Mobile Displays",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011b06",
-        "name": "Mobile Phone Lens",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011b07",
-        "name": "Mobile Chargers",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "6148899cd7c3a8485f011b08",
-        "name": "OTG Adapter",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "61488d37d7c3a8485f011b09",
-        "name": "Headphones",
-        "parent_id": "60e0131fc4db28b79bb36aa3"
-    },
-    {
-        "_id": "61489843841259e4451165db",
-        "name": "External Hard Disks",
-        "parent_id": "60e00694402ddf2ba7d26d43"
-    },
-    {
-        "_id": "61489843841259e4451165de",
-        "name": "Laptop Bags",
-        "parent_id": "60e00694402ddf2ba7d26d43"
-    },
-    {
-        "_id": "61489843841259e4451165df",
-        "name": "Mouse",
-        "parent_id": "60e00694402ddf2ba7d26d43"
-    },
-    {
-        "_id": "61489843841259e4451165e0",
-        "name": "Audio & Video",
-        "parent_id": "60df5e546419f56b97610600"
-    },
-    {
-        "_id": "61489c1f841259e4451165e3",
-        "name": "Pendrives",
-        "parent_id": "60e00694402ddf2ba7d26d43"
-    },
-    {
-        "_id": "61489c1f841259e4451165e5",
-        "name": "Laptop Bags",
-        "parent_id": "60e00694402ddf2ba7d26d43"
-    },
-    {
-        "_id": "61489c1f841259e4451165e7",
-        "name": "Cameras & Accessories",
-        "parent_id": "60df5e546419f56b97610600"
-    },
-    {
-        "_id": "61489d4e841259e4451165e8",
-        "name": "Gaming & Accessories",
-        "parent_id": "60e00694402ddf2ba7d26d43"
-    },
-    {
-        "_id": "61489d4e841259e4451165eb",
-        "name": "Laptop Skins & Decals",
-        "parent_id": "60e00694402ddf2ba7d26d43"
-    },
-    {
-        "_id": "61489d4e841259e4451165ef",
-        "name": "Cameras",
-        "parent_id": "61489c1f841259e4451165e7"
-    },
-    {
-        "_id": "61489d4e841259e4451165f0",
-        "name": "Lens",
-        "parent_id": "61489c1f841259e4451165e7"
-    },
-    {
-        "_id": "61489d4e841259e4451165f1",
-        "name": "Tripods",
-        "parent_id": "61489c1f841259e4451165e7"
-    },
+
     {
         "_id": "61489d4e841259e4451165f2",
         "name": "Television.",
         "parent_id": "60df5e546419f56b97610600"
     },
-    {
-        "_id": "61489d4e841259e4451165f3",
-        "name": "Washing Machine",
-        "parent_id": "60df5e546419f56b97610600"
-    },
-    {
-        "_id": "61489d4e841259e4451165f4",
-        "name": "Refrigerators",
-        "parent_id": "60df5e546419f56b97610600"
-    },
-    {
-        "_id": "61489d4e841259e4451165f5",
-        "name": "Kitchen Appliances",
-        "parent_id": "60df5e546419f56b97610600"
-    },
-    {
-        "_id": "61489e7a841259e4451165f6",
-        "name": "Juicer/Mixer/Grinder",
-        "parent_id": "61489d4e841259e4451165f5"
-    },
-    {
-        "_id": "61489e7a841259e4451165f7",
-        "name": "Chimneys",
-        "parent_id": "61489d4e841259e4451165f5"
-    },
-    {
-        "_id": "61489e7a841259e4451165f9",
-        "name": "Home Appliances",
-        "parent_id": "60df5e546419f56b97610600"
-    },
-    {
-        "_id": "6148a0bd841259e4451165fc",
-        "name": "Coffee Makers",
-        "parent_id": "61489d4e841259e4451165f5"
-    },
-    {
-        "_id": "6148a0bd841259e4451165fd",
-        "name": "Home Appliances",
-        "parent_id": "60df5e546419f56b97610600"
-    },
-    {
-        "_id": "6148a0bd841259e4451165fe",
-        "name": "Irons",
-        "parent_id": "61489e7a841259e4451165f9"
-    },
-    {
-        "_id": "6148a0bd841259e4451165ff",
-        "name": "Fans",
-        "parent_id": "61489e7a841259e4451165f9"
-    },
-    {
-        "_id": "6148a0bd841259e445116600",
-        "name": "Air Coolers",
-        "parent_id": "61489e7a841259e4451165f9"
-    },
-    {
-        "_id": "6148a0bd841259e445116601",
-        "name": "Inverters",
-        "parent_id": "61489e7a841259e4451165f9"
-    },
-    {
-        "_id": "6148a0bd841259e445116602",
-        "name": "Voltage Stabilizers",
-        "parent_id": "61489e7a841259e4451165f9"
-    },
-    {
-        "_id": "6148a0bd841259e445116603",
-        "name": "Vacuum Cleaners",
-        "parent_id": "61489e7a841259e4451165f9"
-    },
-    {
-        "_id": "6148a0bd841259e445116604",
-        "name": "Water Purifiers",
-        "parent_id": "61489e7a841259e4451165f9"
-    },
-    {
-        "_id": "6148a0bd841259e445116606",
-        "name": "Home & Furniture"
-    },
-    {
-        "_id": "6148a0bd841259e445116607",
-        "name": "Personal Care Appliances"
-    },
-    {
-        "_id": "6148a0bd841259e445116608",
-        "name": "Watches and Watch Accessories"
-    },
-    {
-        "_id": "6148a190841259e445116609",
-        "name": "Smart Watches",
-        "parent_id": "6148a0bd841259e445116608"
-    },
-    {
-        "_id": "6148a849841259e44511660a",
-        "name": "Speaker",
-        "parent_id": "61489843841259e4451165e0"
-    },
-    {
-        "_id": "6148b0ce841259e44511660e",
-        "name": "Network Components",
-        "parent_id": "60e00694402ddf2ba7d26d43"
-    },
-    {
-        "_id": "6148b14a841259e44511660f",
-        "name": "Routers",
-        "parent_id": "6148b0ce841259e44511660e"
-    },
-    {
-        "_id": "6148b15a841259e445116610",
-        "name": "Cables",
-        "parent_id": "6148b0ce841259e44511660e"
-    },
-    {
-        "_id": "6148b16d841259e445116611",
-        "name": "LAN Adapters",
-        "parent_id": "6148b0ce841259e44511660e"
-    },
-    {
-        "_id": "6148b17e841259e445116612",
-        "name": "Wireless USB Adapters",
-        "parent_id": "6148b0ce841259e44511660e"
-    },
-    {
-        "_id": "6148b191841259e445116613",
-        "name": "Antenna Amplifiers",
-        "parent_id": "6148b0ce841259e44511660e"
-    },
-    {
-        "_id": "6148b1a1841259e445116614",
-        "name": "Internal Modems",
-        "parent_id": "6148b0ce841259e44511660e"
-    },
+
     {
         "_id": "616ed4e947cdd777fb383273",
         "name": "Footwear",
@@ -446,21 +113,7 @@
         "name": "Sports Shoes",
         "parent_id": "616ed4e947cdd777fb383273"
     },
-    {
-        "_id": "616ed57c47cdd777fb383276",
-        "name": "Formal Shoes",
-        "parent_id": "616ed4e947cdd777fb383273"
-    },
-    {
-        "_id": "616f14298ae9a90aa4434f75",
-        "name": "DTH",
-        "parent_id": "60df5e546419f56b97610600"
-    },
-    {
-        "_id": "616f1d3ca99f7fc73e1acce1",
-        "name": "Microphone",
-        "parent_id": "61489843841259e4451165e0"
-    },
+
     {
         "_id": "617044aab915d460965a3058",
         "name": "Heels",

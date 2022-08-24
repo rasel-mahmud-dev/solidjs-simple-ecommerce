@@ -23,7 +23,7 @@ const AddProduct: Component = (props) => {
 
   const [productData, setProductData] = createSignal({
         title: { value: "Mens Cotton Jacket", errorMessage: "", tauch: false },
-        category: { value: "men's clothing", errorMessage: "", tauch: false }, // id
+        categoryId: { value: "men's clothing", errorMessage: "", tauch: false }, // id
         image: { value: null, blob: null, errorMessage: "", tauch: false },
         price: { value: "55.99", errorMessage: "", tauch: false },
         description: { value: "Mens Cotton Jacket Mens Cotton Jacket Mens Cotton Jacket Mens Cotton Jacket Mens Cotton Jacket", errorMessage: "", tauch: false },
@@ -127,7 +127,7 @@ const AddProduct: Component = (props) => {
             description: item.description,
             image: item.image,
             rating: item.rating,
-            category: item.category,
+            categoryId: item.categoryId,
         })
         let res = await p.save()
         console.log(res);
@@ -161,9 +161,9 @@ const AddProduct: Component = (props) => {
 
         {/*********** Category **************/}
         <InputGroup
-          name="category"
+          name="categoryId"
           type="text"
-          label="category"
+          label="categoryId"
           placeholder="Enter category"
           onInput={handleChange}
           reactiveState={productData}
