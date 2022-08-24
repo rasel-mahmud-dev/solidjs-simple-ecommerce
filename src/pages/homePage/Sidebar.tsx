@@ -1,10 +1,13 @@
 import { FaSolidAngleRight } from "solid-icons/fa";
 import { createEffect, createSignal, For } from "solid-js";
+import { findCategoryBrand } from "src/utils";
+
 
 
 function Sidebar({ state, setFilter }) {
 
     const [categories, setCategories] = createSignal({});
+    const [brands, setBrands] = createSignal(null);
 
 
     function findChildCategory(categories, parent_id) {
@@ -91,15 +94,40 @@ function Sidebar({ state, setFilter }) {
         let updatedCategory = state.filter.category
         if(updatedCategory && updatedCategory._id === item._id){
             updatedCategory = null
+            setBrands(null)
         } else {
             updatedCategory = {
                 name: item.name,
                 _id: item._id
             }
+            let brands = findCategoryBrand(state.brands, updatedCategory._id)
+            setBrands(brands)
         }
-               
+  
         setFilter({
-            category: updatedCategory
+            ...state.filter,
+            brands: [],
+            category: updatedCategory,
+            
+        })
+    }
+    
+    function handleChangeBrand(item: {name: string, _id: string}){
+        let updatedBrands = [...state.filter.brands]
+        
+        let index = updatedBrands.findIndex(b=>b._id === item._id)
+        
+        if(index === -1){
+            updatedBrands = [
+                ...updatedBrands,
+                item
+            ]
+        } else {
+            updatedBrands.splice(index, 1)
+        }        
+        setFilter({
+            ...state.filter,
+            brands: updatedBrands
         })
     }
     
@@ -131,7 +159,6 @@ function Sidebar({ state, setFilter }) {
       <div class="grid px-4">
         <h1 class="font-bold text-2xl">Selected</h1>
         {state.filter?.category && <div class="flex flex-wrap gap-2 mt-4">
-          
             <div
                 onClick={() => handleChangeCategory(state.filter?.category)}
                 class="bg-green-500/10 px-4 py-2 rounded flex justify-between">
@@ -144,27 +171,34 @@ function Sidebar({ state, setFilter }) {
         <h1 class="font-bold text-2xl  mt-8">Category</h1>
             {recursiveCategory(categories(), handleClick, state.filter.category)}
       </div>
-      
+
        <div class="grid px-4">
-            <h1 class="font-bold text-2xl  mt-8">Brands</h1>
-            <div class="mt-4">
-            <For each={state.brands} fallback={<div>Loading...</div>}>
-                {(item) => (
-                <li class="flex justify-between items-center hover:text-green-400 cursor-pointer select-none my-2">
-                    <label class="font-medium cursor-pointer" for={item.name}>
-                    {item.name}
-                    </label>
-                    <input
-                    //   checked={state?.filter?.category?.includes(item.name)}
-                    onChange={() => handleChangeCategory(item.name)}
-                    type="checkbox"
-                    id={item.name}
-                    />
-                </li>
-                )}
-            </For>
+            <h1 class="font-bold text-2xl mt-8">Brands</h1>
+            {state.filter?.brands && <div class="flex flex-wrap gap-2 mt-4">
+                <For each={state.filter.brands}>
+                    {(brand)=>(
+                        <div
+                            onClick={() => handleChangeBrand(brand)}
+                            class="bg-green-500/10 px-4 py-2 rounded flex justify-between">
+                            <span>{brand.name}</span>
+                            <span class="ml-2 text-red-500 font-medium cursor-pointer">x</span>
+                        </div>
+                    )}
+                </For>
             
-        </div>
+            </div> }
+
+            {/* Selected brands  */}
+            <div class="">
+                <For each={brands() ? brands() : state.brands} fallback={<div>Loading...</div>}>
+                    {(item) => (
+                        <li onClick={() => handleChangeBrand(item)} class="flex justify-between items-center hover:text-green-400 cursor-pointer select-none my-2">
+                            <label class="font-medium cursor-pointer">{item.name}</label>
+                            <input checked={state.filter.brands && state.filter.brands.findIndex(b=> b._id === item._id) !== -1 } type="checkbox" />
+                        </li>
+                    )}
+                </For>
+            </div>
       </div>
     </div>
   );

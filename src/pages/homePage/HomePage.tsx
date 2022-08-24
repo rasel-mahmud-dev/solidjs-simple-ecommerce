@@ -6,6 +6,7 @@ import { AppContext } from '../../store/index';
 import SkeletonProducts from "./Skeleton.Products";
 import Sidebar from "./Sidebar";
 import { filterProducts } from "src/store/productActions";
+import { findCategoryBrand } from "src/utils";
 
 
 const HomePage:Component = ()=> {
@@ -37,7 +38,8 @@ const HomePage:Component = ()=> {
         }
 
     }, state.filter.category)
-    
+        
+
     
     return (
         <div class="max-w-screen-xl mx-auto px-4">

@@ -16,6 +16,7 @@ interface AppStateType {
   brands: {name: string}[]
   filter: {
     category: {name: string, _id: string} | null;
+    brands: {name: string, _id: string}[]
   }
 }
 
@@ -31,7 +32,8 @@ export function AppProvider(props) {
       searchValue: "",
       alertMessage: {isOpen: false, message: "", status: 200},
       filter: {
-        category: null
+        category: null,
+        brands: []
       },
       categories: categories,
       brands: brands
@@ -66,7 +68,8 @@ export function AppProvider(props) {
           setState("filter", (filter)=> {
             return {
               ...filter,
-              category: filterPayload.category
+              category: filterPayload.category,
+              brands: filterPayload.brands
             }
           })
         },

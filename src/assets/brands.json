@@ -1,6 +1,9 @@
 [{
         "_id": "61e018aba5ae2006505a2bb9",
-        "name": "huawei"
+        "name": "huawei",
+        "categoryIds": [
+            "60df5e546419f56b97610602"
+        ]
     },
     {
         "_id": "6170fdc3c4da22e845d128bd",
@@ -24,7 +27,10 @@
     },
     {
         "_id": "617019bf0d5ab181fda990f6",
-        "name": "LG"
+        "name": "LG",
+        "categoryIds": [
+            "60df5e546419f56b97610602"
+        ]
     },
     {
         "_id": "616f22ec3de4058443b1b855",
@@ -36,11 +42,17 @@
     },
     {
         "_id": "616f1a7ea99f7fc73e1accda",
-        "name": "Mi"
+        "name": "Mi",
+        "categoryIds": [
+            "60df5e546419f56b97610602"
+        ]
     },
     {
         "_id": "616f16c75744520e05800680",
-        "name": "Oneplus"
+        "name": "Oneplus",
+        "categoryIds": [
+            "60df5e546419f56b97610602"
+        ]
     },
     {
         "_id": "616f14738ae9a90aa4434f77",
@@ -80,23 +92,32 @@
     },
     {
         "_id": "613d230cc9247b736856e2a8",
-        "name": "realme"
+        "name": "realme",
+        "categoryIds": [
+            "60df5e546419f56b97610602"
+        ]
     },
     {
         "_id": "613d2233c9247b736856e2a7",
-        "name": "walton"
+        "name": "walton",
+        "categoryIds": [
+            "60df5e546419f56b97610602"
+        ]
     },
-    {
-        "_id": "613d2233c9247b736856e2a6",
-        "name": "lg"
-    },
+
     {
         "_id": "613d2233c9247b736856e2a5",
-        "name": "symphony"
+        "name": "symphony",
+        "categoryIds": [
+            "60df5e546419f56b97610602"
+        ]
     },
     {
         "_id": "613d2233c9247b736856e2a4",
-        "name": "motorola"
+        "name": "motorola",
+        "categoryIds": [
+            "60df5e546419f56b97610602"
+        ]
     },
     {
         "_id": "613d2233c9247b736856e2a3",
@@ -104,27 +125,45 @@
     },
     {
         "_id": "613d2233c9247b736856e2a2",
-        "name": "Honor"
+        "name": "Honor",
+        "categoryIds": [
+            "60df5e546419f56b97610602"
+        ]
     },
     {
         "_id": "613d2233c9247b736856e2a1",
-        "name": "vivo"
+        "name": "vivo",
+        "categoryIds": [
+            "60df5e546419f56b97610602"
+        ]
     },
     {
         "_id": "613d2233c9247b736856e2a0",
-        "name": "oppo"
+        "name": "oppo",
+        "categoryIds": [
+            "60df5e546419f56b97610602"
+        ]
     },
     {
         "_id": "613d2233c9247b736856e29f",
-        "name": "Infinix"
+        "name": "Infinix",
+        "categoryIds": [
+            "60df5e546419f56b97610602"
+        ]
     },
     {
         "_id": "613d2233c9247b736856e29e",
-        "name": "xiaomi"
+        "name": "xiaomi",
+        "categoryIds": [
+            "60df5e546419f56b97610602"
+        ]
     },
     {
         "_id": "613b948a63f75c69f64c4698",
-        "name": "Apple"
+        "name": "Apple",
+        "categoryIds": [
+            "60df5e546419f56b97610602"
+        ]
     },
     {
         "_id": "6135b4c9e65b6f9410e2ffba",
@@ -180,7 +219,10 @@
     },
     {
         "_id": "6115fd304fb6923fc8faef4e",
-        "name": "nokia"
+        "name": "nokia",
+        "categoryIds": [
+            "60df5e546419f56b97610602"
+        ]
     },
     {
         "_id": "60e16ec9eb7929109752d85e",
