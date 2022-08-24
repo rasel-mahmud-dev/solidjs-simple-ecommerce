@@ -11,7 +11,7 @@ import InputGroup from "src/components/inputs/InputGroup";
 import { createSignal } from "solid-js";
 import TextArea from "components/inputs/TextArea";
 import Button from "components/Button";
-import Product from "src/models/Product";
+import Product from "src/models/ProductModel";
 
 const AddProduct: Component = (props) => {
   const [{ products, alertMessage }, {  login, setAlert }] = useContext(AppContext);
@@ -56,8 +56,6 @@ const AddProduct: Component = (props) => {
           : updateProductData[name].errorMessage,
       },
     };
-
-
     setProductData(() => updateProductData);
   }
 
@@ -182,7 +180,8 @@ const AddProduct: Component = (props) => {
        
         <Button type="submit">Add Product</Button>
       </form>
-    </div>
+    </div> 
+    
   );
 };
 

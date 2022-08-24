@@ -5,7 +5,7 @@ const firebaseInit = import("../firebase/init")
 import { getDocs, collection, setDoc, doc } from "firebase/firestore";
 
 
-export default class Product {
+export default class ProductModel {
     title: string
     price: number
     description: string

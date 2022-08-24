@@ -1,13 +1,15 @@
-interface Props{
+import { JSX } from "solid-js"
+
+
+interface Props extends JSX.HTMLAttributes<HTMLTextAreaElement> {
     name: string 
     reactiveState: ()=> { [key: string]: {value?: string | number, errorMessage?: string}}  | {}
-    type?: string 
     label?: string 
     inputClass?: string 
     labelClass?: string 
-    placeholder?: string 
     onInput: (e: any)=> void 
     className?: string
+    placeholder?: string
 }
 
 function TextArea({name, label, reactiveState, inputClass, placeholder, onInput, className}: Props) {

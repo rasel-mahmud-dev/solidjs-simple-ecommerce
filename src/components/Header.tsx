@@ -123,9 +123,9 @@ const Header: Component = ()=>{
                     
                     </li>
                     <li class="py-4">
-                        <Link href="/cart" class="flex items-center">
+                        <Link href="/cart" class="relative flex items-center">
                             <FaSolidCartShopping class="text-xl text-white" />
-                            <span class="text-white ml-1.5 font-medium text-lg">{countQuantity(state.cart)}</span>
+                            <span class="absolute -top-3 left-2 text-gray-900 px-1 text-xs flex justify-center items-center rounded-full bg-white ml-1.5 font-medium">{countQuantity(state.cart)}</span>
                         </Link>
                     </li>
                     <li class="w-full py-4 relative" onMouseOver={()=>setOpenDropdown(true)} onMouseLeave={()=>setOpenDropdown(false)}>

@@ -1,6 +1,9 @@
 import { createContext, JSXElement } from "solid-js";
 import { createStore } from "solid-js/store";
 
+import categories from "src/assets/categories.json"
+import brands from "src/assets/brands.json"
+
 interface AppStateType {
   products: null | {title: string}[],
   filteredProducts: null | {title: string}[],
@@ -9,6 +12,7 @@ interface AppStateType {
   alertMessage: {isOpen: boolean, message?: string | JSXElement, status: 200 | 500},
   searchValue?: string,
   categories: {name: string}[]
+  brands: {name: string}[]
   filter: {
     category: string[]
   }
@@ -28,20 +32,22 @@ export function AppProvider(props) {
       filter: {
         category: []
       },
-      categories: [
-          {
-              "name": "men's clothing"
-          },
-          {
-              "name": "jewelery"
-          },
-          {
-              "name": "electronics"
-          },
-          {
-              "name": "women's clothing"
-          }
-      ]
+      categories: categories,
+      brands: brands
+      //  [
+          // {
+          //     "name": "men's clothing"
+          // },
+          // {
+          //     "name": "jewelery"
+          // },
+          // {
+          //     "name": "electronics"
+          // },
+          // {
+          //     "name": "women's clothing"
+          // }
+      // ]
      });
     
     const appState: {state: AppStateType, actions: {} } = [

@@ -1,18 +1,18 @@
+import { Component, JSX } from "solid-js"
 
-interface Props{
+
+interface Props extends JSX.InputHTMLAttributes<HTMLButtonElement> {
     name: string 
-    reactiveState: ()=> { [key: string]: {value?: string | number, errorMessage?: string}} 
-    type?: string 
+    reactiveState: ()=> { [key: string]: {value?: string | number, errorMessage?: string}} | any
     label?: string 
     inputClass?: string 
     labelClass?: string 
-    placeholder?: string 
     onInput: (e: any)=> void 
     className?: string
 }
 
 
-function InputGroup({name, reactiveState, type, label, inputClass, labelClass, placeholder, onInput, className}: Props) {
+const InputGroup: Component<Props> = ({name, reactiveState, type, label, inputClass, labelClass, placeholder, onInput, className}) => {
 
   
   return (

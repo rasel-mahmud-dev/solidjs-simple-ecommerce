@@ -34,7 +34,7 @@ const SingleProduct:Component<ProductType> = (props)=> {
                 <div>
                 <h1 class="text-center mt-2">{props.title}</h1>
                 {/* <p>{props.description}</p> */}
-                <h3 class="text-center font-medium mt-2">{props.price}</h3>
+                <h3 class="text-center font-medium mt-2">${props.price}</h3>
                 <Button class="mx-auto" onClick={()=>handleAddTpCart(props)}>Add To Cart</Button>
            
         </div>
