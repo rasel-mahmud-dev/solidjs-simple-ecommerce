@@ -5,9 +5,7 @@ import { createEffect } from "solid-js";
 
 import InputGroup from "src/components/inputs/InputGroup";
 
-// import { getDocs, getFirestore, collection } from "firebase/firestore";
 
-// const firebaseInit = import("src/firebase/init")
 import { createSignal } from "solid-js";
 import TextArea from "components/inputs/TextArea";
 import Button from "components/Button";
@@ -101,8 +99,6 @@ const AddProduct: Component = (props) => {
     e.preventDefault();
 
     let payload: any = {}
-
-
     let isCompleted = true;
 
     let updatedState = {...productData()}
@@ -130,32 +126,34 @@ const AddProduct: Component = (props) => {
     }
 
 
+    const {default: Product}= await ProductModel
 
-    // let p = new Product({
-    //     title: payload.title,
-    //     price: payload.price,
-    //     description: payload.description,
-    //     image: "",
-    //     rating: {rate: 4, count: 10},
-    //     category: payload.category
-    // })
+    let data = {
+      title: payload.title,
+      price: payload.price,
+      description: payload.description,
+      image: payload.image,
+      rating: {rate: 4, count: 10},
+      categoryId: payload.categoryId,
+      brandId: payload.brandId
+  }
 
-    products?.forEach(async (item)=>{
-        // console.log(item);
+    if(params.id){
+      // update product 
+      let response = await Product.updateOne(data, params.id)
+      if(response){
+        setAlert({isOpen: true, message: "Product has been updated", status: 200}) 
+      } else{
+        setAlert({isOpen: true, message: "Product update fail", status: 500}) 
+      }
+      return;
+    }
+ 
+    let p = new Product(data)
 
-        let p = new ProductModel({
-            title: item.title,
-            price: item.price,
-            description: item.description,
-            image: item.image,
-            rating: item.rating,
-            categoryId: item.categoryId,
-        })
-        let res = await p.save()
-        console.log(res);
-    })
-
-    // let res = await p.save()
+    let res = await p.save()
+    console.log(res);
+    
 
   }
 
@@ -241,7 +239,7 @@ const AddProduct: Component = (props) => {
       
 
        
-        <Button type="submit">Add Product</Button>
+        <Button type="submit">{params.id ? "Update Product" : "Add Product"} </Button>
       </form>
     </div> 
     

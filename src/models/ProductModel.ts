@@ -2,7 +2,7 @@ import { ProductType } from "../types"
 
 const firebaseInit = import("../firebase/init")
 
-import { getDocs, collection, setDoc, doc, getDoc, query } from "firebase/firestore";
+import { getDocs, collection, setDoc, doc, getDoc, query, updateDoc } from "firebase/firestore";
 
 
 export default class ProductModel {
@@ -13,11 +13,12 @@ export default class ProductModel {
     image: string
     rating: {rate: number, count: number}
     categoryId: string
+    brandId: string
     createdAt: Date
 
     static collection = "products"
    
-    constructor(data: {title: string, price: number, description: string, image: string, rating:  {rate: number, count: number}, categoryId: string}){
+    constructor(data: {title: string, price: number, description: string, image: string, rating:  {rate: number, count: number}, brandId: string, categoryId: string}){
         this.title = data.title
         this.price = data.price
         this.description = data.description
@@ -25,6 +26,7 @@ export default class ProductModel {
         this.image = data.image
         this.rating = data.rating
         this.categoryId = data.categoryId
+        this.brandId = data.brandId
         this.createdAt = new Date()
     }
 
@@ -34,7 +36,7 @@ export default class ProductModel {
             try {
                 let data: ProductType[] = []
                 const {default: db} = await firebaseInit
-                const querySnapshot  = await getDocs(collection(db, "products"));
+                const querySnapshot  = await getDocs(collection(db, ProductModel.collection));
                 querySnapshot.forEach((doc: any) => {
                     data.push({
                         id: doc.id,
@@ -79,10 +81,27 @@ export default class ProductModel {
                 const {default: db} = await firebaseInit
             
                 // Add a new document in collection "cities"
-                await setDoc(doc(db, Product.collection, this.id), {
+                await setDoc(doc(db, ProductModel.collection, this.id), {
                     ...this,
                 });
                 resolve(this)
+
+            } catch(ex){
+                resolve(null)
+            }
+        })
+        
+    }
+    
+    static updateOne(data: ProductType, id: string){
+        return new Promise<ProductType | null>(async(resolve, reject)=>{
+            try {
+                
+                // get db
+                const {default: db} = await firebaseInit
+                const productRef = doc(db, ProductModel.collection, id);
+                await updateDoc(productRef, data as any);
+                resolve(data)
 
             } catch(ex){
                 resolve(null)
