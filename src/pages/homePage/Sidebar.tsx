@@ -174,6 +174,7 @@ function Sidebar({ state, setFilter }) {
 
        <div class="grid px-4">
             <h1 class="font-bold text-2xl mt-8">Brands</h1>
+            {/* Selected brands  */}
             {state.filter?.brands && <div class="flex flex-wrap gap-2 mt-4">
                 <For each={state.filter.brands}>
                     {(brand)=>(
@@ -188,7 +189,8 @@ function Sidebar({ state, setFilter }) {
             
             </div> }
 
-            {/* Selected brands  */}
+       
+            {/* brand list */}
             <div class="">
                 <For each={brands() ? brands() : state.brands} fallback={<div>Loading...</div>}>
                     {(item) => (

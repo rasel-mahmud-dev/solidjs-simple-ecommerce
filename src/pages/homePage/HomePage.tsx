@@ -6,8 +6,6 @@ import { AppContext } from '../../store/index';
 import SkeletonProducts from "./Skeleton.Products";
 import Sidebar from "./Sidebar";
 import { filterProducts } from "src/store/productActions";
-import { findCategoryBrand } from "src/utils";
-
 
 const HomePage:Component = ()=> {
 
@@ -16,34 +14,37 @@ const HomePage:Component = ()=> {
     onMount(async () => { 
         if(!state.products || state.products.length === 0){
 
-            // let {default: ProductM} = await ProductModal
-            // let products = await ProductM.findAll()
-            // setProducts(products)
+            let {default: ProductM} = await ProductModal
+            let products = await ProductM.findAll()
+            setProducts(products)
 
-            fetch(api + "/products")
-                .then(res=>res.json())
-                .then(json=> {
-                    setProducts(json)
-                })
+            // fetch(api + "/products")
+            //     .then(res=>res.json())
+            //     .then(json=> {
+            //         setProducts(json)
+            //     })
         }         
     })
 
     createEffect(()=>{ 
-        if(state.filter.category){
-            let products = filterProducts({
-                products: state.products,
-                filter: state.filter
-            })
-            setFilteredProducts(products)
-        }
-
-    }, state.filter.category)
+      
+        let products = filterProducts({
+            products: state.products,
+            filter:  {
+                category: state.filter.category,
+                brands: state.filter.brands
+            }
+        })
+        console.log(products);
         
-
+        setFilteredProducts(products)
+    
+    })
+    
     
     return (
         <div class="max-w-screen-xl mx-auto px-4">
-            <div class="grid grid-cols-12">
+            <div class="grid grid-cols-12 items-start">
 
                 <Sidebar state={state} setFilter={setFilter} />
 

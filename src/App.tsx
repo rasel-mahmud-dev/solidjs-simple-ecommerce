@@ -41,6 +41,7 @@ const App: Component = () => {
           <Route path="/" component={HomePage} />
           <Route path="/cart" component={CartPage} />
           <Route path="/admin/add-product" component={AddProduct} />
+          <Route path="/admin/update-product/:id" component={AddProduct} />
         </Routes>
     </div>
   );

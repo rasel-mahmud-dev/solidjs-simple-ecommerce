@@ -2,7 +2,7 @@ import { ProductType } from "../types"
 
 const firebaseInit = import("../firebase/init")
 
-import { getDocs, collection, setDoc, doc } from "firebase/firestore";
+import { getDocs, collection, setDoc, doc, getDoc, query } from "firebase/firestore";
 
 
 export default class ProductModel {
@@ -42,6 +42,27 @@ export default class ProductModel {
                     })
                 });     
                 resolve(data)   
+            } catch (e) {
+                console.error(e);
+                resolve(null)   
+            }
+        })        
+    }
+    static async findOne(id: string){
+        return new Promise<ProductType[] | null>(async(resolve, reject)=>{
+            try {
+            
+                const {default: db} = await firebaseInit
+
+                const cityRef = doc(db, ProductModel.collection, id);
+                const docSnap = await getDoc(cityRef);
+                if (docSnap.exists()) {
+                    resolve(docSnap.data());
+                    } else {
+                    // doc.data() will be undefined in this case
+                    resolve(null);
+                    }
+        
             } catch (e) {
                 console.error(e);
                 resolve(null)   

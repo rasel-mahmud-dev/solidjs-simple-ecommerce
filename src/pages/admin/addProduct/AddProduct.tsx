@@ -1,4 +1,4 @@
-import { Component, lazy } from "solid-js";
+import { Component, lazy, onMount } from "solid-js";
 import { useContext } from "solid-js";
 import { AppContext } from "src/store/index";
 import { createEffect } from "solid-js";
@@ -11,25 +11,52 @@ import InputGroup from "src/components/inputs/InputGroup";
 import { createSignal } from "solid-js";
 import TextArea from "components/inputs/TextArea";
 import Button from "components/Button";
-import Product from "src/models/ProductModel";
+const ProductModel = import("src/models/ProductModel");
+import { useLocation, useParams } from "@solidjs/router";
+import SelectGroup from "components/inputs/SelectGroup";
+import { findCategoryBrand } from "src/utils";
 
 const AddProduct: Component = (props) => {
-  const [{ products, alertMessage }, {  login, setAlert }] = useContext(AppContext);
+  const [{ categories, brands, products, alertMessage }, {  login, setAlert }] = useContext(AppContext);
 
+  let params = useParams()
+  
   // Initialize Cloud Firestore and get a reference to the service
 
-  createEffect(async () => {}, 0);
+  const [brandsForCategory, setBrandsForCategoy] = createSignal(null)
 
 
   const [productData, setProductData] = createSignal({
-        title: { value: "Mens Cotton Jacket", errorMessage: "", tauch: false },
-        categoryId: { value: "men's clothing", errorMessage: "", tauch: false }, // id
-        image: { value: null, blob: null, errorMessage: "", tauch: false },
-        price: { value: "55.99", errorMessage: "", tauch: false },
-        description: { value: "Mens Cotton Jacket Mens Cotton Jacket Mens Cotton Jacket Mens Cotton Jacket Mens Cotton Jacket", errorMessage: "", tauch: false },
-   
+    title: { value: "", errorMessage: "", tauch: false },
+    categoryId: { value: "", errorMessage: "", tauch: false }, // id
+    brandId: { value: "", errorMessage: "", tauch: false }, // id
+    image: { value: null, blob: null, errorMessage: "", tauch: false },
+    price: { value: "", errorMessage: "", tauch: false },
+    description: { value: "", errorMessage: "", tauch: false },
   })
 
+  
+
+  createEffect(async()=>{
+    if(params.id){
+      const {default: Product}= await ProductModel
+      let product = await Product.findOne(params.id)
+
+      let updateProductData = {...productData()}
+      for (const key in updateProductData) {
+      
+        if(product[key]){
+          updateProductData[key] = {
+            ... updateProductData[key],
+            value: product[key],
+            errorMessage: ""
+          }
+        }
+      }  
+      setProductData(updateProductData)          
+    }
+  })
+  
 
   const [state, setState] = createSignal({
     addMovieModal: "", // addGenre | addLanguage |  addQuality
@@ -43,6 +70,17 @@ const AddProduct: Component = (props) => {
     const { name, value } = e.target;
     let updateProductData = {
         ...productData()
+    }
+
+
+
+    if(name === "categoryId"){
+      let b = findCategoryBrand(brands, value)
+      if(b && b.length >0){
+        setBrandsForCategoy(b)
+      } else{
+        setBrandsForCategoy(null)
+      }
     }
 
     updateProductData = {
@@ -72,30 +110,14 @@ const AddProduct: Component = (props) => {
     const productDataPayload = productData()
 
     for (let key in productDataPayload) {
-        
-        if (key === "image") {
-            // if (!movieDataPayload[key].tauch || !movieDataPayload[key].value) {
-            //     updatedState[key].errorMessage = `${key} is required`
-            //     isCompleted = false;
-            // } else {
-            //     // only check when image is blob data;
-            //     if (!params.id) {
-            //         if (movieDataPayload[key].value.size > "102400") { // 100kb
-            //             updatedState[key].errorMessage = `${key} size should be under 100kb`
-            //             isCompleted = false;
-            //         }
-            //     }
-            // }
-
+        if (!productDataPayload[key].value) {
+            updatedState[key].errorMessage = `${key} is required`
+            isCompleted = false;
+            
         } else {
-            if (!productDataPayload[key].value) {
-                updatedState[key].errorMessage = `${key} is required`
-                isCompleted = false;
-                
-            } else {
-                payload[key] = productDataPayload[key].value
-            }
-        }
+            payload[key] = productDataPayload[key].value
+      }
+      
     }
 
  
@@ -121,7 +143,7 @@ const AddProduct: Component = (props) => {
     products?.forEach(async (item)=>{
         // console.log(item);
 
-        let p = new Product({
+        let p = new ProductModel({
             title: item.title,
             price: item.price,
             description: item.description,
@@ -149,10 +171,22 @@ const AddProduct: Component = (props) => {
           onInput={handleChange}
           reactiveState={productData}
         />
+        {/*********** Title **************/}
+        <InputGroup
+          name="image"
+          type="text"
+          label="Image"
+          placeholder="Enter Image Link"
+          onInput={handleChange}
+          reactiveState={productData}
+        />
+
+        <img class="w-full" src={productData().image.value} alt="image" srcset="" />
         {/*********** Price **************/}
          <InputGroup
           name="price"
           type="number"
+          step="any"
           label="Price"
           placeholder="Enter Product price"
           onInput={handleChange}
@@ -160,13 +194,40 @@ const AddProduct: Component = (props) => {
         />
 
         {/*********** Category **************/}
-        <InputGroup
+        <SelectGroup
           name="categoryId"
-          type="text"
-          label="categoryId"
-          placeholder="Enter category"
+          label="Select Category"
           onInput={handleChange}
           reactiveState={productData}
+          options={()=>(
+            <>
+              <option value="">select a category</option>
+              { categories && categories.map(item=> item.parent_id && (
+                <option value={item._id}>{item.name}</option>
+              )) }
+            </>
+          )}
+        />
+    
+        {/*********** Brands **************/}
+        <SelectGroup
+          name="brandId"
+          label="Select Brand"
+          onInput={handleChange}
+          reactiveState={productData}
+          options={()=>(
+            <>
+              <option value="">select a brand</option>
+              { (!brandsForCategory() && brands) 
+              ? brands.map(item=> (
+                  <option value={item._id}>{item.name}</option>
+              ))
+              : brandsForCategory() && brandsForCategory().map(item=> (
+                <option value={item._id}>{item.name}</option>
+              )
+            )}
+            </>
+          )}
         />
 
         {/*********** description **************/}
@@ -177,6 +238,8 @@ const AddProduct: Component = (props) => {
           onInput={handleChange}
           reactiveState={productData}
         /> 
+      
+
        
         <Button type="submit">Add Product</Button>
       </form>
