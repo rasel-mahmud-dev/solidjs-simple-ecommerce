@@ -1,12 +1,12 @@
 import { Component, createSignal, lazy, useContext } from "solid-js"
-import { useNavigate } from "@solidjs/router"
+import { Link, useNavigate } from "@solidjs/router"
 import { FaSolidLockOpen } from "solid-icons/fa"
-import { AppContext } from './../store/index';
-import Button from "./Button";
-const authActions = import("../store/authActions")
+import { AppContext } from 'store/index';
+import Button from "components/Button";
+const authActions = import("store/authActions")
+import { AiOutlineGoogle } from 'solid-icons/ai'
 
-
-const Login: Component = ()=>{
+const Registration: Component = ()=>{
 
     const navigate = useNavigate()
 
@@ -81,17 +81,27 @@ const Login: Component = ()=>{
                         name="password" 
                         id="password" />
                 </div>
-                
-                <h1>{Date.now()} {userData().email}</h1>
 
-                <button type="submit" class="flex items-center mt-4 bg-green-500 text-white px-4 py-1.5 rounded text-lg">
-                    <FaSolidLockOpen />
-                    <h1 class="ml-1 font-medium">Login</h1>
-                </button>
+                <div class="mt-4">
+                    <p class="font-medium">Not have a Account? 
+                        <Link href="/" class="text-blue-500 underline">Create an Account</Link>
+                    </p>
+                </div>
 
-                <h1>Or</h1>
+                <div class="flex flex-col items-center justify-center mt-4">
+                    <button type="submit" class="flex items-center mt-4 bg-green-500 text-white px-4 py-1.5 rounded text-lg">
+                        <FaSolidLockOpen />
+                        <h1 class="ml-1 font-medium">Login</h1>
+                    </button>
 
-                <Button type="button" onClick={handleGoogleLogin}>Login With Google</Button>
+                    <h1 class="my-3">Or</h1>
+
+                    <Button type="button" onClick={handleGoogleLogin} class="bg-red-500/90 hover:bg-red-600">
+                        <AiOutlineGoogle class="text-white text-xl" />
+                            <span class="ml-1">Login With Google</span>
+                        </Button>
+                </div>
+
 
             </form>
         </div>
@@ -99,4 +109,4 @@ const Login: Component = ()=>{
 }
 
 
-export default Login
+export default Registration

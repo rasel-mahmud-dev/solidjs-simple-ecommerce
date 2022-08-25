@@ -2,10 +2,7 @@ import { Outlet, useLocation } from "@solidjs/router";
 
 const Dashboard = () => {
 
-    const location = useLocation()
-
-    console.log(location);
-    
+  const location = useLocation()
 
   return (
     <div>
@@ -17,7 +14,7 @@ const Dashboard = () => {
             </div>
 
 
-            <div class="ml-0 md:ml-60 pl-4">
+            <div class="ml-0 md:ml-60 pl-0 md:pl-4">
                 <Outlet/>
             </div>
 

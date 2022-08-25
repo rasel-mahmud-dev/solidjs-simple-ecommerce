@@ -4,6 +4,12 @@ import {  FaSolidCartShopping, FaSolidShop, FaSolidUser} from "solid-icons/fa"
 import { AppContext } from "../store"
 import Button from "./Button"
 
+import { RiUserAdminFill } from 'solid-icons/ri'
+import { IoAddCircleOutline } from 'solid-icons/io'
+import { OcSignout2 } from 'solid-icons/oc'
+import { OcSignin2 } from 'solid-icons/oc'
+import { getAuth } from 'firebase/auth';
+
 const Header: Component = ()=>{
 
     const [state, {setSearchValue, setFilteredProducts, login}] =  useContext(AppContext)
@@ -59,9 +65,15 @@ const Header: Component = ()=>{
         setFilteredProducts(a)
     }
 
-    function handleLogout(){
-        login(null)
-        setOpenDropdown(false)
+    async function handleLogout(){
+        try{
+            const auth = getAuth()
+            let a =  await auth.signOut()        
+            login(null)
+            setOpenDropdown(false)
+        } catch(ex){
+
+        }
     }
 
     function authDropdown(isAuth: boolean){
@@ -69,13 +81,30 @@ const Header: Component = ()=>{
             <div class="shadow-md p-3 bg-white absolute right-6 top-12 w-40">
                 {isAuth ? (
                     <>
-                    <li class="hover:text-green-400"><Link onClick={()=>setOpenDropdown(false)} href="/admin">Dashboard</Link></li>
-                        <li class="hover:text-green-400 mt-1"><Link onClick={()=>setOpenDropdown(false)} href="admin/add-product">Add Product</Link></li>
-                        <li class="hover:text-green-400 mt-1"><span onClick={handleLogout}>Logout</span></li>
+                    <li class="hover:text-green-400">
+                        <Link class="flex items-center gap-x-1" onClick={()=>setOpenDropdown(false)} href="/admin">
+                            <RiUserAdminFill />
+                            <span>Dashboard</span>
+                        </Link>
+                    </li>
+                        <li class="hover:text-green-400 mt-1">
+                            <Link class="flex items-center gap-x-1" onClick={()=>setOpenDropdown(false)} href="admin/add-product">
+                            <IoAddCircleOutline />
+                            Add Product
+
+                            </Link>
+                        </li>
+                        <li class="flex items-center gap-x-1 hover:text-green-400 mt-1" onClick={handleLogout}>
+                            <OcSignout2 /> 
+                            Logout
+                        </li>
                     </>
                 ) : (
                     <>
-                        <li class="hover:text-green-400 mt-1"><Link onClick={()=>setOpenDropdown(false)} href="login">Login</Link></li>
+                        <li class="flex items-center gap-x-2 hover:text-green-400 mt-1">
+                            <Link class="flex items-center gap-x-1"  onClick={()=>setOpenDropdown(false)} href="pages/auth/Login">
+                                <OcSignin2/>
+                                Login</Link></li>
                     </>
                 )}
                 
@@ -134,8 +163,8 @@ const Header: Component = ()=>{
                         { state.auth ? (
                           <div class="flex items-center" >
                              
-                              { state.auth.avatar  
-                                ? <img class="w-5 h-5" src="https://lh3.googleusercontent.com/a-/AFdZucpqn0-GSAC7u7ku0PQw36tssLNAXHWDL9BMt8Wj=s96-c"  />
+                              { state.auth?.avatar  
+                                ? <img class="w-6 h-6 rounded-full " src={state.auth.avatar}  />
                                 : <FaSolidUser class="text-xl text-white" /> 
                               }
         

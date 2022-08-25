@@ -2,6 +2,8 @@ import { useParams } from "@solidjs/router"
 import { createSignal, createEffect } from "solid-js"
 const ProductModel =  import("src/models/ProductModel")
 import RatingStar from "components/RatingStar"
+import { ProductType } from './../../types/index';
+import Button from "components/Button";
 
 const ProductDetail = () => {
 
@@ -9,7 +11,7 @@ let params = useParams()
   
   // Initialize Cloud Firestore and get a reference to the service
 
-  const [productDetails, setProductDetails] = createSignal(null)
+  const [productDetails, setProductDetails] = createSignal<ProductType | null>(null)
 
   
 
@@ -30,15 +32,44 @@ let params = useParams()
 
         <div>
             { productDetails()  && (
-                <div class="flex">
-                    <div class="w-32">
-                        <img src={productDetails().image} alt="" srcset="" />
-                    </div>
-                    <div class="ml-10">
-                        <h1 class="text-md font-medium">{productDetails().title}</h1>
-                        <h1>${productDetails().price}</h1>
+                <div class="block md:grid grid-cols-12 gap-x-4">
+                    <div class="col-span-4 w-52 md:w-auto mx-auto md:mx-0">
+                        <img class="w-full" src={productDetails()?.image} alt="" srcset="" />
 
-                        <RatingStar rating={productDetails().rating} />
+                        <div class="flex gap-x-6">
+                            <Button class="whitespace-nowrap">Add To Cart</Button>
+                            <Button class="whitespace-nowrap w-full justify-center">Buy Now</Button>
+                        </div>
+
+                    </div>
+
+                    <div class="col-span-8 mt-10 md:mt-0">
+                        <h1 class="text-xl font-bold text-neutral-800">{productDetails()?.title}</h1>
+                  
+
+                        <li class="list-none mt-4">
+                            <div class="font-medium">Price</div>
+                            <h1>${productDetails()?.price}</h1>
+                        </li>
+
+                        <li class="list-none mt-4">
+                            <div class="font-medium">Rating</div>
+                            <span class="flex items-center">
+                                <span class="font-medium bg-green-500 px-3 text-white rounded">{productDetails()?.rating.rate}</span>
+                                <RatingStar rating={productDetails()?.rating} class="ml-2" />
+                            </span>
+                            <span class="flex items-center mt-2">
+                                <span class="font-medium text-neutral-800">{productDetails()?.rating.count}</span>
+                                <span class="font-medium text-neutral-900 ml-2">Reviews</span>
+                            </span>
+                            
+                        </li>
+
+                        <li class="list-none mt-4">
+                            <div class="font-medium">Description</div>
+                            <p class="whitespace-pre-line">{productDetails()?.description}</p>
+                        </li>
+                        
                     </div>
                 </div>
             ) }            

@@ -1,6 +1,6 @@
 import { ProductType } from "../types"
 
-const firebaseInit = import("../firebase/init")
+const firebaseDb = import("../firebase/db")
 
 import { getDocs, collection, setDoc, doc, getDoc, query, updateDoc, where } from "firebase/firestore";
 
@@ -35,7 +35,7 @@ export default class ProductModel {
         return new Promise<ProductType[] | null>(async(resolve, reject)=>{
             try {
                 let data: ProductType[] = []
-                const {default: db} = await firebaseInit
+                const {default: db} = await firebaseDb
                 const querySnapshot  = await getDocs(collection(db, ProductModel.collection));
                 querySnapshot.forEach((doc: any) => {
                     data.push({
@@ -55,7 +55,7 @@ export default class ProductModel {
         return new Promise<ProductType[] | null>(async(resolve, reject)=>{
             try {
                 let data: ProductType[] = []
-                const {default: db} = await firebaseInit
+                const {default: db} = await firebaseDb
                 
                 const conditions = []
                 if(q.categoryId){
@@ -85,7 +85,7 @@ export default class ProductModel {
         return new Promise<ProductType[] | null>(async(resolve, reject)=>{
             try {
             
-                const {default: db} = await firebaseInit
+                const {default: db} = await firebaseDb
 
                 const cityRef = doc(db, ProductModel.collection, id);
                 const docSnap = await getDoc(cityRef);
@@ -109,7 +109,7 @@ export default class ProductModel {
             try {
                 
                 // get db
-                const {default: db} = await firebaseInit
+                const {default: db} = await firebaseDb
             
                 // Add a new document in collection "cities"
                 await setDoc(doc(db, ProductModel.collection, this.id), {
@@ -129,7 +129,7 @@ export default class ProductModel {
             try {
                 
                 // get db
-                const {default: db} = await firebaseInit
+                const {default: db} = await firebaseDb
                 const productRef = doc(db, ProductModel.collection, id);
                 await updateDoc(productRef, data as any);
                 resolve(data)

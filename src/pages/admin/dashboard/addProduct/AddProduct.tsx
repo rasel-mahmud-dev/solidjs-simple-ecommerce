@@ -160,7 +160,7 @@ const AddProduct: Component = (props) => {
   }
 
   return (
-    <div class="max-w-2xl mx-auto px-4 ">
+    <div class="">
 
       <h1 class="text-xl font-bold text-center">{params.id ? "Update Product" : "Add Product"}</h1>
 

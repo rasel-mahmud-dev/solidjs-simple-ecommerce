@@ -1,6 +1,6 @@
 import { Component, lazy } from 'solid-js';
 import { useContext } from 'solid-js';
-import { AppContext } from './store/index';
+import { AppContext } from 'src/store/index';
 
 import { Route, Routes } from '@solidjs/router';
 
@@ -10,30 +10,49 @@ import Alert from './components/Alert';
 
 const AddProduct = lazy(()=>import('./pages/admin/dashboard/addProduct/AddProduct'));
 
-const Login = lazy(()=>import("./components/Login"));
+const Login = lazy(()=>import("pages/auth/Login"));
 const CartPage = lazy(()=>import("./pages/CartPage"));
 const HomePage = lazy(()=>import("./pages/homePage/HomePage"));
 const ProductDetail = lazy(()=>import("pages/productDetail/ProductDetail"));
 const Dashboard = lazy(()=>import("./pages/admin/dashboard/Dashboard"));
+
 const DashboardHome = lazy(()=>import("./pages/admin/dashboard/DashboardHome"));
+
+
+// initialized firebase app
+import  "src/firebase/init"
+
+import { getAuth } from "firebase/auth";
+
 
 
 import { onMount } from 'solid-js';
 
 
+import { createEffect } from 'solid-js';
+
 const App: Component = () => {
 
   const [{alertMessage}, {login} ]= useContext(AppContext)
 
-
-  // Initialize Cloud Firestore and get a reference to the service
-
-
   onMount(async()=>{
-    let auth = localStorage.getItem("auth")
-    login(JSON.parse(auth))
+    // let auth = localStorage.getItem("auth")
+    // login(JSON.parse(auth))
   })
 
+  createEffect(()=>{
+    let auth = getAuth()
+    auth.onAuthStateChanged(user => {
+      if(user){
+        login({
+            username: user.displayName,
+            avatar: user.photoURL,
+            userId: user.uid,
+            email: user.email, 
+        })
+      }
+    })
+  })
 
   return (
     <div>
