@@ -51,7 +51,7 @@ export default class ProductModel {
         })        
     }
 
-    static async query(q: { categoryId?: string, brandId?: string }){
+    static async query(q: { categoryId?: string, brandIds?: string[] }){
         return new Promise<ProductType[] | null>(async(resolve, reject)=>{
             try {
                 let data: ProductType[] = []
@@ -61,8 +61,8 @@ export default class ProductModel {
                 if(q.categoryId){
                     conditions.push(where('categoryId', '==', q.categoryId))
                 }
-                if(q.brandId){
-                    conditions.push(where('brandId', '==', q.brandId))
+                if(q.brandIds){
+                    conditions.push(where('brandId', 'in', [...q.brandIds]))
                 }
                 
                 let q1 = query(collection(db, ProductModel.collection), ...conditions)

@@ -2,7 +2,8 @@
         "_id": "61e018aba5ae2006505a2bb9",
         "name": "huawei",
         "categoryIds": [
-            "60df5e546419f56b97610602"
+            "60df5e546419f56b97610602",
+            "60df5e546419f56b97610607"
         ]
     },
     {
@@ -23,7 +24,8 @@
     },
     {
         "_id": "61702049ed596803892403ef",
-        "name": "MSI"
+        "name": "MSI",
+        "categoryIds": ["60df5e546419f56b97610607"]
     },
     {
         "_id": "617019bf0d5ab181fda990f6",
@@ -126,13 +128,17 @@
     },
     {
         "_id": "613d2233c9247b736856e2a3",
-        "name": "asus"
+        "name": "asus",
+        "categoryIds": [
+            "60df5e546419f56b97610607"
+        ]
     },
     {
         "_id": "613d2233c9247b736856e2a2",
         "name": "Honor",
         "categoryIds": [
-            "60df5e546419f56b97610602"
+            "60df5e546419f56b97610602",
+            "60df5e546419f56b97610607"
         ]
     },
     {
@@ -141,7 +147,8 @@
         "categoryIds": [
             "60df5e546419f56b97610602",
             "613ae2344b72d984efe8c45b",
-            "60df5e546419f56b97610617"
+            "60df5e546419f56b97610617",
+            "60df5e546419f56b97610607"
         ]
     },
     {
@@ -176,45 +183,11 @@
         "_id": "613b948a63f75c69f64c4698",
         "name": "Apple",
         "categoryIds": [
-            "60df5e546419f56b97610602"
+            "60df5e546419f56b97610602",
+            "60df5e546419f56b97610607"
         ]
     },
-    {
-        "_id": "6135b4c9e65b6f9410e2ffba",
-        "name": "Artisti"
-    },
-    {
-        "_id": "6135b4c9e65b6f9410e2ffb9",
-        "name": "Westecs"
-    },
-    {
-        "_id": "6135b4c9e65b6f9410e2ffb8",
-        "name": "Anjan’s"
-    },
-    {
-        "_id": "6135b4c9e65b6f9410e2ffb7",
-        "name": "Dorjibari"
-    },
-    {
-        "_id": "6135b4c9e65b6f9410e2ffb6",
-        "name": "Rang"
-    },
-    {
-        "_id": "6135b4c9e65b6f9410e2ffb5",
-        "name": "Ecstasy"
-    },
-    {
-        "_id": "6135b4c9e65b6f9410e2ffb4",
-        "name": "Richman"
-    },
-    {
-        "_id": "6135b4c9e65b6f9410e2ffb3",
-        "name": "Cats Eye"
-    },
-    {
-        "_id": "6135b4c9e65b6f9410e2ffb2",
-        "name": "Aarong"
-    },
+
     {
         "_id": "61356beca937c621233341da",
         "name": "MUFTI"
@@ -231,7 +204,8 @@
         "_id": "613511bba937c621233341c8",
         "name": "Lenovo",
         "categoryIds": [
-            "613ae2344b72d984efe8c45b"
+            "613ae2344b72d984efe8c45b",
+            "60df5e546419f56b97610607"
         ]
     },
     {
@@ -274,6 +248,7 @@
         "_id": "60e16ec9eb7929109752d85c",
         "name": "asus",
         "categoryIds": [
+            "60df5e546419f56b97610607",
             "613ae2344b72d984efe8c45b"
         ]
     },

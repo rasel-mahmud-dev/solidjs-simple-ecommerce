@@ -15,12 +15,7 @@
     },
     {
         "_id": "60df5e546419f56b97610602",
-        "name": "Mobile",
-        "parent_id": "60df5e546419f56b97610600"
-    },
-    {
-        "_id": "60df5e546419f56b97610603",
-        "name": "Tablet",
+        "name": "Mobile & Tablet",
         "parent_id": "60df5e546419f56b97610600"
     },
 
@@ -30,7 +25,7 @@
         "parent_id": "60df5e546419f56b97610600"
     },
     {
-        "_id": "60df5e546419f56b97610607",
+        "_id": "60df5e546419f56b97610617",
         "name": "Laptop Backpack",
         "parent_id": "60df5e546419f56b97610600"
     },
