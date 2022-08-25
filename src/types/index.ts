@@ -4,7 +4,7 @@ export interface ProductType  {
     description: string,
     id: string,
     image: string
-    rating: {},
+    rating: {rate: number, count: number},
     categoryId: string
     brandId: string
     createdAt: Date

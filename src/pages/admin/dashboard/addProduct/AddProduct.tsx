@@ -141,9 +141,7 @@ const AddProduct: Component = (props) => {
     if(params.id){
       // update product 
       let response = await Product.updateOne(data, params.id)
-      if(response){
-        console.log(response);
-        
+      if(response){        
         setAlert({isOpen: true, message: "Product has been updated", status: 200}) 
       } else{
         setAlert({isOpen: true, message: "Product update fail", status: 500}) 
@@ -154,13 +152,19 @@ const AddProduct: Component = (props) => {
     let p = new Product(data)
 
     let res = await p.save()
-    console.log(res);
-    
-
+    if(res){        
+      setAlert({isOpen: true, message: "Product has been Added", status: 200}) 
+    } else{
+      setAlert({isOpen: true, message: "Product Adding fail", status: 500}) 
+    }
   }
 
   return (
-    <div class="max-w-xl mx-auto">
+    <div class="max-w-2xl mx-auto px-4 ">
+
+      <h1 class="text-xl font-bold text-center">{params.id ? "Update Product" : "Add Product"}</h1>
+
+
       <form onSubmit={handleSaveProduct}>
         {/*********** Title **************/}
         <InputGroup

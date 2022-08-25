@@ -17,9 +17,7 @@ const Login: Component = ()=>{
         password: ""
     })
 
-    function handleChange(e: any){
-        console.log([e.target.name]);
-        
+    function handleChange(e: any){        
         setUserData(prev=>{
             return {
                 ...prev,
@@ -45,12 +43,12 @@ const Login: Component = ()=>{
         try{
             const {loginWithGoogle} = await authActions
             loginWithGoogle((user)=>{
-            if(user){
-                // only for developmeent 
-                // login(user)
-                // localStorage.setItem("auth", JSON.stringify(user))
-                // navigate("/")
-            }
+                if(user){
+                    // only for developmeent 
+                    // login(user)
+                    // localStorage.setItem("auth", JSON.stringify(user))
+                    // navigate("/")
+                }
             })
         } catch(ex){
             
@@ -58,7 +56,7 @@ const Login: Component = ()=>{
       }
 
     return (
-        <div>
+        <div class="mx-4">
             <h1 class="text-center text-4xl font-bold">User Login</h1>
             <form onSubmit={handleSubmit} class="max-w-md mx-auto mt-10" >
                 <div class="flex items-center">

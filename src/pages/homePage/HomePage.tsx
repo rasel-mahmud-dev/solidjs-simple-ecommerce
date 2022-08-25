@@ -12,8 +12,9 @@ const HomePage:Component = ()=> {
     const [state, {setProducts, setFilter, setFilteredProducts}] = useContext(AppContext)
 
     onMount(async () => { 
-        if(!state.products || state.products.length === 0){
-
+        
+        
+        if(!state?.products || state?.products.length === 0){
             let {default: ProductM} = await ProductModal
             let products = await ProductM.findAll()
             setProducts(products)
@@ -34,11 +35,8 @@ const HomePage:Component = ()=> {
                 category: state.filter.category,
                 brands: state.filter.brands
             }
-        })
-        console.log(products);
-    
+        })    
         setFilteredProducts(products)
-    
     })
     
     

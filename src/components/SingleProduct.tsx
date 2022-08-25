@@ -4,6 +4,7 @@ import { AppContext } from "../store/index";
 import Button from "./Button";
 import { FaSolidPen } from "solid-icons/fa";
 import { Link } from "@solidjs/router";
+import RatingStar from "./RatingStar";
 
 const SingleProduct: Component<ProductType> = (props) => {
   const [state, { setCart, setAlert }] = useContext(AppContext);
@@ -23,23 +24,26 @@ const SingleProduct: Component<ProductType> = (props) => {
   }
 
   return (
-    <div class="shadow-md flex justify-around flex-col items-center p-4 relative">
+    <div class="shadow-md flex justify-around flex-col p-4 relative">
         <Link href={`/admin/update-product/${props.id}`}>
             <div class="w-6 h-6 bg-green-500/20 cursor-pointer p-2 flex justify-center items-center rounded-full absolute right-2 top-2">
                 <FaSolidPen class="text-xs" />
             </div>
         </Link>
-      <div class="w-36 h-36">
-        <img class="object-contain w-full h-full " src={props.image} alt="" />
-      </div>
-      <div>
-        <h1 class="text-center mt-2">{props.title}</h1>
-        {/* <p>{props.description}</p> */}
-        <h3 class="text-center font-medium mt-2">${props.price}</h3>
-        <Button class="mx-auto" onClick={() => handleAddTpCart(props)}>
-          Add To Cart
-        </Button>
-      </div>
+
+        <Link href={`/details/${props.id}`}>
+          <div class="w-36 h-36 mx-auto">
+            <img class="object-contain w-full h-full " src={props.image} alt="" />
+          </div>
+          <div>
+            <h1 class="text-center mt-2">{props.title}</h1>
+            <RatingStar rating={props.rating} class="justify-center mt-3" />
+            <h3 class="text-center font-medium mt-1">${props.price}</h3>
+            <Button class="mx-auto" onClick={() => handleAddTpCart(props)}>
+              Add To Cart
+            </Button>
+          </div>
+      </Link>
     </div>
   );
 };

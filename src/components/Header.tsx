@@ -69,7 +69,7 @@ const Header: Component = ()=>{
             <div class="shadow-md p-3 bg-white absolute right-6 top-12 w-40">
                 {isAuth ? (
                     <>
-                    <li class="hover:text-green-400"><Link onClick={()=>setOpenDropdown(false)} href="">Dashboard</Link></li>
+                    <li class="hover:text-green-400"><Link onClick={()=>setOpenDropdown(false)} href="/admin">Dashboard</Link></li>
                         <li class="hover:text-green-400 mt-1"><Link onClick={()=>setOpenDropdown(false)} href="admin/add-product">Add Product</Link></li>
                         <li class="hover:text-green-400 mt-1"><span onClick={handleLogout}>Logout</span></li>
                     </>
