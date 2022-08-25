@@ -1,5 +1,8 @@
-export function filterProducts(payload){
+const ProductModal = import("src/models/ProductModel")
 
+export async function filterProducts(payload){
+
+    let {default: ProductM} = await ProductModal
 
     const {products, filter: { category, brands }} = payload
    
@@ -24,7 +27,9 @@ export function filterProducts(payload){
 
      } else if(category){
             console.log("filter with categories");
-            let items = products.filter(product=> product.categoryId === category._id)
+            const items = await ProductM.query({categoryId: category._id})
+
+            // let items = products.filter(product=> product.categoryId === category._id)
             return items
         
     } else{

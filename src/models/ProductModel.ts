@@ -2,7 +2,7 @@ import { ProductType } from "../types"
 
 const firebaseInit = import("../firebase/init")
 
-import { getDocs, collection, setDoc, doc, getDoc, query, updateDoc } from "firebase/firestore";
+import { getDocs, collection, setDoc, doc, getDoc, query, updateDoc, where } from "firebase/firestore";
 
 
 export default class ProductModel {
@@ -50,6 +50,37 @@ export default class ProductModel {
             }
         })        
     }
+
+    static async query(q: { categoryId?: string, brandId?: string }){
+        return new Promise<ProductType[] | null>(async(resolve, reject)=>{
+            try {
+                let data: ProductType[] = []
+                const {default: db} = await firebaseInit
+                
+                const conditions = []
+                if(q.categoryId){
+                    conditions.push(where('categoryId', '==', q.categoryId))
+                }
+                if(q.brandId){
+                    conditions.push(where('brandId', '==', q.brandId))
+                }
+                
+                let q1 = query(collection(db, ProductModel.collection), ...conditions)
+                const querySnapshot  = await getDocs(q1);                
+                querySnapshot.forEach((doc: any) => {
+                    data.push({
+                        id: doc.id,
+                        ...doc.data()
+                    })
+                });          
+                resolve(data)   
+            } catch (e) {
+                console.error(e);
+                resolve(null)   
+            }
+        })        
+    }
+
     static async findOne(id: string){
         return new Promise<ProductType[] | null>(async(resolve, reject)=>{
             try {

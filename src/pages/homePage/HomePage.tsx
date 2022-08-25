@@ -26,17 +26,17 @@ const HomePage:Component = ()=> {
         }         
     })
 
-    createEffect(()=>{ 
+    createEffect( async ()=>{ 
       
-        let products = filterProducts({
-            products: state.products,
+        let products = await filterProducts({
+            products:  state.products,
             filter:  {
                 category: state.filter.category,
                 brands: state.filter.brands
             }
         })
         console.log(products);
-        
+    
         setFilteredProducts(products)
     
     })
