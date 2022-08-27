@@ -7,10 +7,10 @@ import { Route, Routes } from '@solidjs/router';
 import Header from './components/Header';
 import Alert from './components/Alert';
 
-
 const AddProduct = lazy(()=>import('./pages/admin/dashboard/addProduct/AddProduct'));
 
 const Login = lazy(()=>import("pages/auth/Login"));
+const Registration = lazy(()=>import("pages/auth/Registration"));
 const CartPage = lazy(()=>import("./pages/CartPage"));
 const HomePage = lazy(()=>import("./pages/homePage/HomePage"));
 const ProductDetail = lazy(()=>import("pages/productDetail/ProductDetail"));
@@ -23,8 +23,6 @@ const DashboardHome = lazy(()=>import("./pages/admin/dashboard/DashboardHome"));
 import  "src/firebase/init"
 
 import { getAuth } from "firebase/auth";
-
-
 
 import { onMount } from 'solid-js';
 
@@ -54,13 +52,14 @@ const App: Component = () => {
     })
   })
 
-  return (
+    return (
     <div>
       <Header />
 
       {alertMessage.isOpen && <Alert message={alertMessage.message} status={alertMessage.status} /> }
       <Routes>
-        <Route path="/login" component={Login} />
+        <Route path="/auth/login" component={Login} />
+        <Route path="/auth/registration" component={Registration} />
         <Route path="/" component={HomePage} />
         <Route path="/details/:id" component={ProductDetail} />
         <Route path="/cart" component={CartPage} />

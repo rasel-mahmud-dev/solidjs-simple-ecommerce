@@ -2,7 +2,7 @@ import { useParams } from "@solidjs/router"
 import { createSignal, createEffect } from "solid-js"
 const ProductModel =  import("src/models/ProductModel")
 import RatingStar from "components/RatingStar"
-import { ProductType } from './../../types/index';
+import { ProductType } from 'src/types/index';
 import Button from "components/Button";
 
 const ProductDetail = () => {
@@ -13,7 +13,7 @@ let params = useParams()
 
   const [productDetails, setProductDetails] = createSignal<ProductType | null>(null)
 
-  
+
 
   createEffect(async()=>{
     if(params.id){
@@ -24,8 +24,7 @@ let params = useParams()
       setProductDetails(product)
     }
   })
-  
-  
+
 
   return (
     <div class="max-w-screen-xl mx-auto px-4">
@@ -36,7 +35,7 @@ let params = useParams()
                     <div class="col-span-4 w-52 md:w-auto mx-auto md:mx-0">
                         <img class="w-full" src={productDetails()?.image} alt="" srcset="" />
 
-                        <div class="flex gap-x-6">
+                        <div class="flex gap-x-6 mt-6">
                             <Button class="whitespace-nowrap">Add To Cart</Button>
                             <Button class="whitespace-nowrap w-full justify-center">Buy Now</Button>
                         </div>
@@ -44,7 +43,7 @@ let params = useParams()
                     </div>
 
                     <div class="col-span-8 mt-10 md:mt-0">
-                        <h1 class="text-xl font-bold text-neutral-800">{productDetails()?.title}</h1>
+                        <h1 class="text-xl font-bold text-neutral-800 ">{productDetails()?.title}</h1>
                   
 
                         <li class="list-none mt-4">

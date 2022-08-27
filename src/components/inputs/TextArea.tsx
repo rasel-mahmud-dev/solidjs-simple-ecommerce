@@ -23,7 +23,7 @@ function TextArea({name, label, reactiveState, inputClass, placeholder, onInput,
                     id={name}
                     placeholder={placeholder} 
                     onInput={onInput}
-                    class={`border-[1.5px] border-green-500/90 rounded px-2 py-1 w-full placeholder:text-gray-700 text-gray-800 outline-none h-32  ${inputClass}`} 
+                    class={`input ${inputClass} text-[15px] h-20  rounded px-2 py-1.5 w-full placeholder:text-gray-700 text-gray-800 outline-none`}
                 ></textarea>
                 <div class="mt-0">
                     {reactiveState()[name]?.errorMessage && <span class="rounded-md text-red-500">{reactiveState()[name].errorMessage}</span> }

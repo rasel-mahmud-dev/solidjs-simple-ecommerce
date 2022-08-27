@@ -102,7 +102,7 @@ const Header: Component = ()=>{
                 ) : (
                     <>
                         <li class="flex items-center gap-x-2 hover:text-green-400 mt-1">
-                            <Link class="flex items-center gap-x-1"  onClick={()=>setOpenDropdown(false)} href="pages/auth/Login">
+                            <Link class="flex items-center gap-x-1"  onClick={()=>setOpenDropdown(false)} href="/auth/Login">
                                 <OcSignin2/>
                                 Login</Link></li>
                     </>

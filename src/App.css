@@ -1,3 +1,24 @@
 .sidebar_top {
     margin-top: 60px;
 }
+
+.input{
+    border: 1px solid #adadadb0;
+    transition: border .2s ease;
+    /*border-[1.5px] border-green-500/90*/
+}
+
+.input:focus{
+    @apply border-green-500/90;
+}
+
+
+.as{
+
+}
+
+
+.cvasdf{
+
+}
+

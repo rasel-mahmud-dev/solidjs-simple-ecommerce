@@ -7,7 +7,7 @@ const Button: Component<Props> = (props) => {
   return (
     <button
       {...buttonProps}
-      class={`flex items-center bg-green-500 transition-colors hover:bg-green-600 text-white font-medium text-[15px] px-4 py-2 rounded ${pr.class}`}
+      class={`flex items-center bg-green-500 transition-colors hover:bg-green-600 text-white font-medium text-[15px] px-4 py-1.5 rounded ${pr.class}`}
     >
       {pr.children}
     </button>

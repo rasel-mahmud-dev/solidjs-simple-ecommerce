@@ -7,6 +7,7 @@ import App from "./App";
 
 import { AppProvider } from "./store";
 
+import "./App.css";
 import "./index.css";
 
 render(
