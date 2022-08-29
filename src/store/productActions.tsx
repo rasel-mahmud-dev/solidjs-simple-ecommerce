@@ -1,5 +1,6 @@
 const ProductModal = import("src/models/ProductModel")
 
+// filter product from firestore firebase database
 export async function filterProducts(payload){
 
     let {default: ProductM} = await ProductModal

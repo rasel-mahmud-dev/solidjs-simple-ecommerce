@@ -3,7 +3,7 @@ import { ProductType } from "../types";
 import { AppContext } from "src/store/index";
 import Button from "./Button";
 import { FaSolidPen } from "solid-icons/fa";
-import { Link } from "@solidjs/router";
+import {Link, useNavigate} from "@solidjs/router";
 import RatingStar from "./RatingStar";
 import { BsTrash2Fill } from 'solid-icons/bs'
 
@@ -13,7 +13,19 @@ import {addToCart} from "store/productActions";
 const SingleProduct: Component<ProductType> = (props) => {
   const [state, { setCart, setAlert }] = useContext(AppContext);
 
+  const navigate = useNavigate()
 
+
+  function goProductDetail(e) {
+    e.preventDefault();
+    navigate(`/details/${props.id}`)
+  }
+
+  function addToCartHandler(e){
+    // stop event bubbling
+    e.stopPropagation();
+    addToCart(props, setCart, setAlert)
+  }
 
   return (
     <div class="shadow-md flex justify-around flex-col p-4 relative">
@@ -31,7 +43,7 @@ const SingleProduct: Component<ProductType> = (props) => {
             </>
         )}
 
-        <Link href={`/details/${props.id}`}>
+        <div  onClick={goProductDetail}>
           <div class="w-36 h-36 mx-auto">
             <img class="object-contain w-full h-full " src={props.image} alt="" />
           </div>
@@ -39,11 +51,11 @@ const SingleProduct: Component<ProductType> = (props) => {
             <h1 class="text-center mt-2">{props.title}</h1>
             <RatingStar rating={props.rating} class="justify-center mt-3" />
             <h3 class="text-center font-medium mt-1">${props.price}</h3>
-            <Button class="mx-auto" onClick={() => addToCart(props, setCart, setAlert)}>
+            <Button class="mx-auto" onClick={addToCartHandler}>
               Add To Cart
             </Button>
           </div>
-      </Link>
+      </div>
     </div>
   );
 };

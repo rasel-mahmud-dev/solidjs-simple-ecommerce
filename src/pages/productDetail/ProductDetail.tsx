@@ -18,6 +18,9 @@ let params = useParams()
 
   const [productDetails, setProductDetails] = createSignal<ProductType | null>(null)
 
+  function handleAddToCart(){
+    addToCart(productDetails(), setCart, setAlert)
+  }
 
 
   createEffect(async()=>{
@@ -39,7 +42,7 @@ let params = useParams()
                         <img class="w-full" src={productDetails()?.image} alt="" srcset="" />
 
                         <div class="flex gap-x-6 mt-6">
-                            <Button class="whitespace-nowrap" onClick={() => addToCart(productDetails, setCart, setAlert)}>Add To Cart</Button>
+                            <Button class="whitespace-nowrap" onClick={handleAddToCart}>Add To Cart</Button>
                             <Button class="whitespace-nowrap w-full justify-center">Buy Now</Button>
                         </div>
 

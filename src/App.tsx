@@ -23,18 +23,25 @@ const DashboardHome = lazy(()=>import("./pages/admin/dashboard/DashboardHome"));
 import  "src/firebase/init"
 
 import { getAuth } from "firebase/auth";
+import Checkout from "pages/Checkout";
 
 
 
 const App: Component = () => {
 
-  const [{alertMessage, auth, authFetched}, {login, setAuthFetched, setAlert} ]= useContext(AppContext)
+  const [{alertMessage, auth, authFetched}, {login, fetchCart, setAuthFetched, setAlert} ]= useContext(AppContext)
 
   const navigate = useNavigate();
 
   onMount(async()=>{
-    // let auth = localStorage.getItem("auth")
-    // login(JSON.parse(auth))
+
+    let localStorageCartItems = localStorage.getItem("cart")
+    if(localStorageCartItems) {
+      try {
+        let cartObject = JSON.parse(localStorageCartItems)
+        cartObject && fetchCart(cartObject)
+      } catch (ex) {}
+    }
   })
 
   createEffect(()=>{
@@ -87,13 +94,12 @@ const App: Component = () => {
             path="*"
             element={<Navigate href="/" />}
             />
-          )}
+        )}
 
         <Route path="/" component={HomePage} />
         <Route path="/details/:id" component={ProductDetail} />
         <Route path="/cart" component={CartPage} />
-
-
+        <Route path="/checkout" component={Checkout} />
 
         {/**** admin route register after user logged */}
         {(!authFetched.isFetch || auth) ? (

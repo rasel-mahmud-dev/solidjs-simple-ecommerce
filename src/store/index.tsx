@@ -111,7 +111,13 @@ export function AppProvider(props) {
                 quantity: 1,
               }
             }
+            localStorage.setItem("cart", JSON.stringify(updateCart))
             return updateCart
+          })
+        },
+        fetchCart: function(payload: {}[]){
+          setState("cart", function(){
+            return payload
           })
         },
 
