@@ -8,23 +8,10 @@ import RatingStar from "./RatingStar";
 import { BsTrash2Fill } from 'solid-icons/bs'
 
 import isAdmin from "../utils/isAdmin";
+import {addToCart} from "store/productActions";
 
 const SingleProduct: Component<ProductType> = (props) => {
   const [state, { setCart, setAlert }] = useContext(AppContext);
-
-  function handleAddTpCart(item) {
-    setCart({
-      id: item.id,
-      image: item.image,
-      title: item.title,
-      price: item.price,
-    });
-    setAlert({
-      isOpen: true,
-      message: <h1 class="text-white">Product Add to Cart...</h1>,
-      status: 200,
-    });
-  }
 
 
 
@@ -52,7 +39,7 @@ const SingleProduct: Component<ProductType> = (props) => {
             <h1 class="text-center mt-2">{props.title}</h1>
             <RatingStar rating={props.rating} class="justify-center mt-3" />
             <h3 class="text-center font-medium mt-1">${props.price}</h3>
-            <Button class="mx-auto" onClick={() => handleAddTpCart(props)}>
+            <Button class="mx-auto" onClick={() => addToCart(props, setCart, setAlert)}>
               Add To Cart
             </Button>
           </div>

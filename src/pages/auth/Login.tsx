@@ -13,7 +13,8 @@ const Login: Component = ()=>{
 
     const navigate = useNavigate()
 
-    const [state, {login, setAlert}] =  useContext(AppContext)
+    const [state, {login, setAlert, setAuthFetched}] =  useContext(AppContext)
+
 
     const [userData, setUserData] = createSignal({
         email: {value: "", errorMessage: ""},
@@ -61,10 +62,16 @@ const Login: Component = ()=>{
             return;
         }
 
-        loginWithPassword(payload)
-        // login(payload)
-        // navigate("/")
-
+        loginWithPassword(payload, (user, err)=>{
+            if(err){
+                setAlert({isOpen: true, message: err})
+                return
+            }
+            if(state.authFetched.loadUrl) {
+                setAuthFetched({isFetch: true, loadUrl: ""})
+                navigate(state.authFetched.loadUrl)
+            }
+        })
     }
 
 
@@ -113,6 +120,9 @@ const Login: Component = ()=>{
                         <Link href="/auth/registration" class="text-blue-500 underline">Create an Account</Link>
                     </p>
                 </div>
+
+
+                <div id="recaptcha-container"></div>
 
                 <div class="flex flex-col items-center justify-center mt-4">
                     <Button type="submit" >

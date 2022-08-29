@@ -1,11 +1,16 @@
 import { useParams } from "@solidjs/router"
-import { createSignal, createEffect } from "solid-js"
+import { createSignal, createEffect, useContext } from "solid-js"
 const ProductModel =  import("src/models/ProductModel")
 import RatingStar from "components/RatingStar"
-import { ProductType } from 'src/types/index';
+import { ProductType } from 'src/types';
 import Button from "components/Button";
+import {addToCart} from "store/productActions";
+
+import {AppContext} from "store/index";
 
 const ProductDetail = () => {
+
+  const [state, {setCart, setAlert}] = useContext(AppContext)
 
 let params = useParams()
   
@@ -19,8 +24,6 @@ let params = useParams()
     if(params.id){
       const {default: Product}= await ProductModel
       let product = await Product.findOne(params.id)
-      console.log(product);
-      
       setProductDetails(product)
     }
   })
@@ -31,20 +34,19 @@ let params = useParams()
 
         <div>
             { productDetails()  && (
-                <div class="block md:grid grid-cols-12 gap-x-4">
-                    <div class="col-span-4 w-52 md:w-auto mx-auto md:mx-0">
+                <div class="block md:grid grid-cols-12 gap-x-8">
+                    <div class="col-span-3 w-52 md:w-auto mx-auto md:mx-0">
                         <img class="w-full" src={productDetails()?.image} alt="" srcset="" />
 
                         <div class="flex gap-x-6 mt-6">
-                            <Button class="whitespace-nowrap">Add To Cart</Button>
+                            <Button class="whitespace-nowrap" onClick={() => addToCart(productDetails, setCart, setAlert)}>Add To Cart</Button>
                             <Button class="whitespace-nowrap w-full justify-center">Buy Now</Button>
                         </div>
 
                     </div>
 
-                    <div class="col-span-8 mt-10 md:mt-0">
+                    <div class="col-span-9 mt-10 md:mt-0">
                         <h1 class="text-xl font-bold text-neutral-800 ">{productDetails()?.title}</h1>
-                  
 
                         <li class="list-none mt-4">
                             <div class="font-medium">Price</div>

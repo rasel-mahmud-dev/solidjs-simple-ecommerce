@@ -26,7 +26,6 @@ export async function filterProducts(payload){
     }
 }
 
-
 function brandQueryPayload(brands: {_id:string}[]){
     if(brands.length > 0){
         console.log("filter with brands");
@@ -36,4 +35,24 @@ function brandQueryPayload(brands: {_id:string}[]){
         }
        return ids
     }
+}
+
+
+
+export function addToCart(item, setCart, setAlert){
+
+    setCart({
+        id: item.id,
+        image: item.image,
+        title: item.title,
+        price: item.price,
+    });
+    setAlert({
+        isOpen: true,
+        message: <h1 class="text-white">Product Add to Cart...</h1>,
+        status: 200,
+    });
+
+
+
 }

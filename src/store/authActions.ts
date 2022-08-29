@@ -1,4 +1,4 @@
-import { getAuth, signInWithRedirect, GoogleAuthProvider, createUserWithEmailAndPassword  } from "firebase/auth";
+import { getAuth, signInWithRedirect, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
 
 export function loginWithGoogle(cb: (user: {} | null)=>void){
     const provider = new GoogleAuthProvider();    
@@ -24,19 +24,20 @@ export function loginWithGoogle(cb: (user: {} | null)=>void){
   });
 }
 
-export function loginWithPassword(payload: {email: string, password: string}, cb: (user: {} | null)=>void){
-
+export function loginWithPassword(payload: {email: string, password: string}, cb: (user: {} | null, err?: string )=>void){
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, payload.email, payload.password)
+    signInWithEmailAndPassword(auth, payload.email, payload.password)
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            console.log(user)
+            cb({
+                username: user.displayName,
+                avatar: user.photoURL,
+                userId: user.uid,
+                email: user.email,
+            }, "")
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(error)
+            cb(null, error.message)
         });
-
 }

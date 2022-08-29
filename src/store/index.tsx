@@ -9,6 +9,7 @@ interface AppStateType {
   products: null | ProductType[],
   filteredProducts: null | {title: string}[],
   auth: {email: string} | null,
+  authFetched: {isFetch: boolean, loadUrl: string},
   cart: {title: string}[] | null
   alertMessage: {isOpen: boolean, message?: string | JSXElement, status: 200 | 500},
   searchValue?: string,
@@ -22,7 +23,7 @@ interface AppStateType {
 
 let id:any;
 
-export const AppContext = createContext([{ products: null, auth: null, cart: [] || null }, {}]);
+export const AppContext = createContext([{ products: null, auth: null, authFetched: false, cart: [] || null }, {}]);
 
 export function AppProvider(props) {
 
@@ -30,6 +31,7 @@ export function AppProvider(props) {
       products: null,
       filteredProducts: null,
       auth: null,
+      authFetched: { isFetch: false, loadUrl: "/" },
       cart: null,
       searchValue: "",
       alertMessage: {isOpen: false, message: "", status: 200},
@@ -78,6 +80,15 @@ export function AppProvider(props) {
 
         login: function(payload: object | null){
           setState("auth", ()=>  payload)
+        },
+
+        setAuthFetched: function(payload: {}){
+          setState("authFetched", (s)=>  {
+            return {
+              ...s,
+              ...payload,
+            }
+          })
         },
 
         setSearchValue: function(payload: string){

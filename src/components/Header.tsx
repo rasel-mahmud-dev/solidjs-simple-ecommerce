@@ -77,10 +77,9 @@ const Header: Component = ()=>{
     }
 
     function authDropdown(isAuth: boolean){
-        return (
+        return isAuth && (
             <div class="shadow-md p-3 bg-white absolute right-6 top-12 w-40">
-                {isAuth ? (
-                    <>
+
                     <li class="hover:text-green-400">
                         <Link class="flex items-center gap-x-1" onClick={()=>setOpenDropdown(false)} href="/admin">
                             <RiUserAdminFill />
@@ -98,16 +97,7 @@ const Header: Component = ()=>{
                             <OcSignout2 /> 
                             Logout
                         </li>
-                    </>
-                ) : (
-                    <>
-                        <li class="flex items-center gap-x-2 hover:text-green-400 mt-1">
-                            <Link class="flex items-center gap-x-1"  onClick={()=>setOpenDropdown(false)} href="/auth/Login">
-                                <OcSignin2/>
-                                Login</Link></li>
-                    </>
-                )}
-                
+
             </div>
         )
     }
@@ -158,8 +148,6 @@ const Header: Component = ()=>{
                         </Link>
                     </li>
                     <li class="w-full py-4 relative" onMouseOver={()=>setOpenDropdown(true)} onMouseLeave={()=>setOpenDropdown(false)}>
-                    
-                
                         { state.auth ? (
                           <div class="flex items-center" >
                              
@@ -171,16 +159,15 @@ const Header: Component = ()=>{
                             <span class="text-white ml-1 font-medium">{state.auth.username ? state.auth.username : state.auth.email.substr(0, 5)}</span>
                             
                           </div>  
-                            ) : ( <Link href="/login" class="flex  items-center">
-                                <FaSolidUser class="text-xl text-white" />
-                                <span class="text-white ml-1 font-medium">Login</span>
-                            </Link> )
+                            ) : (<div class="" onMouseOver={()=> setOpenDropdown(true)} >
+                                    <Link class="text-white flex items-center gap-x-1" href="/auth/Login">
+                                        <OcSignin2/>Login
+                                    </Link>
+                        </div> )
                         }
 
-                        <Show
-                            when={isOpenDropdown()}>
-                            {authDropdown(state.auth)}
-                        </Show>  
+                        { state.auth && authDropdown(isOpenDropdown())}
+
 
                     </li>
                 </ul>
